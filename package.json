@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sjaakluthart/react-stickerpipe.git"
+    "url": "git+https://github.com/anchorchat/react-stickerpipe.git"
   },
   "author": "Sjaak Luthart",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sjaakluthart/react-stickerpipe/issues"
+    "url": "https://github.com/anchorchat/react-stickerpipe/issues"
   },
-  "homepage": "https://github.com/sjaakluthart/react-stickerpipe#readme",
+  "homepage": "https://github.com/anchorchat/react-stickerpipe#readme",
   "devDependencies": {
     "eslint": "^3.10.2",
     "eslint-config-airbnb": "^13.0.0",
