@@ -9,7 +9,7 @@ class StickerList extends Component {
   }
 
   render() {
-    return(<h1>StickerList</h1>);
+    return <h1>StickerList</h1>;
   }
 }
 
