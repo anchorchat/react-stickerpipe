@@ -1,6 +1,6 @@
 import request from 'request';
 
-export default class StickerPipeClient {
+class StickerPipeClient {
   constructor(key, userID, baseUrl) {
     Object.assign(this, { key, userID, baseUrl });
   }
@@ -22,6 +22,8 @@ export default class StickerPipeClient {
     });
   }
 }
+
+export default StickerPipeClient;
 
 /*
   Usage:
