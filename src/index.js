@@ -1,4 +1,4 @@
-import StickerList from './StickerList';
-import StickerSingle from './StickerSingle';
+import StickerList from './sticker-list';
+import Sticker from './sticker';
 
-export { StickerList, StickerSingle };
+export { StickerList, Sticker };
