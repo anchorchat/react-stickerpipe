@@ -23,6 +23,25 @@ class StickerPipeClient {
       }
     });
   }
+
+  getSticker(stickerId, callback) {
+    const options = {
+      url: `${this.baseUrl}/content/${stickerId}`,
+      headers: {
+        ApiKey: this.key,
+        Platform: 'JS',
+        UserId: this.userID
+      }
+    };
+
+    request.get(options, (error, response, body) => {
+      if (!error && response.statusCode === 200) {
+        callback(null, body);
+      } else {
+        callback(error);
+      }
+    });
+  }
 }
 
 export default StickerPipeClient;
