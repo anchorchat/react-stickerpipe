@@ -1,0 +1,26 @@
+{
+  "name": "react-stickerpipe",
+  "version": "0.0.1",
+  "description": "React Component for StickerPipe API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sjaakluthart/react-stickerpipe.git"
+  },
+  "author": "Sjaak Luthart",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sjaakluthart/react-stickerpipe/issues"
+  },
+  "homepage": "https://github.com/sjaakluthart/react-stickerpipe#readme",
+  "devDependencies": {
+    "eslint": "^3.10.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.7.1"
+  }
+}
