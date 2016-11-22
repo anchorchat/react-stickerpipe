@@ -25,6 +25,7 @@
     "eslint-plugin-react": "^6.7.1"
   },
   "dependencies": {
+    "dotenv": "^2.0.0",
     "request": "^2.79.0"
   }
 }
