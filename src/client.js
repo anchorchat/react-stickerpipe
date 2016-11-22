@@ -1,5 +1,4 @@
-const request = require('request');
-require('dotenv').config({ silent: true });
+import request from 'request';
 
 export default class StickerPipeClient {
   constructor(key, userID, baseUrl) {
