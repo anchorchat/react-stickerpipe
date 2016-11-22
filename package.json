@@ -21,7 +21,9 @@
   ],
   "contributors": [
     {
-      "name": "Sjaak Luthart"
+      "name": "Sjaak Luthart",
+      "email": "mail@sjaakluthart.nl",
+      "url": "https://github.com/sjaakluthart"
     },
     {
       "name": "Rijk van Zanten",
