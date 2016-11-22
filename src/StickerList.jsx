@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
-export default class StickerList {
+class StickerList extends Component {
   render() {
     return(<h1>StickerList</h1>);
   }
 }
+
+export default StickerList;
