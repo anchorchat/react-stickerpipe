@@ -6,14 +6,16 @@ class StickerPipeClient {
   }
 
   getShop(callback) {
-    request.get({
+    const options = {
       url: `${this.baseUrl}/shop`,
       headers: {
         ApiKey: this.key,
         Platform: 'JS',
         UserId: this.userID
       }
-    }, (error, response, body) => {
+    };
+
+    request.get(options, (error, response, body) => {
       if (!error && response.statusCode === 200) {
         callback(null, body);
       } else {
