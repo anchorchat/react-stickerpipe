@@ -26,8 +26,8 @@ export default class StickerPipeClient {
 /*
   Usage:
 
-  const key = process.env.STICKER_PIPE_KEY;
-  const userId = process.env.USER_ID;
+  const key = 'yourAPIKey'
+  const userId = 'someUserID';
   const endpoint = 'https://api.stickerpipe.com/api/v2';
 
   const StickerPipeClient = require('./client.js');
