@@ -38,7 +38,6 @@ class StickerMenu extends Component {
   render() {
     return (
       <section>
-        <h1>StickerMenu</h1>
         <MyStickerPacks client={this.client} />
         {
           !this.state.loading
