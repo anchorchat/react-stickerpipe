@@ -5,7 +5,9 @@ import settings from './settings.json';
 
 function App() {
   return (
-    <StickerMenu apiKey={settings.apiKey} userId={settings.userId} />
+    <section className="demo">
+      <StickerMenu apiKey={settings.apiKey} userId={settings.userId} />
+    </section>
   );
 }
 
