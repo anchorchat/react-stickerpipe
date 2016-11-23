@@ -1,9 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Sticker extends Component {
-  render() {
-    return <h1>Sticker</h1>;
-  }
+function Sticker({ src }) {
+  const style = {
+    sticker: {
+      width: '50px',
+      cursor: 'pointer'
+    }
+  };
+
+  return <img style={style.sticker} src={src} role="presentation" />;
 }
+
+Sticker.propTypes = {
+  src: React.PropTypes.string.isRequired
+};
 
 export default Sticker;

@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import StickerPipeClient from './client';
+import StickerShop from './sticker-shop';
 
 class StickerMenu extends Component {
-  static renderList(stickers) {
-    return (
-      <div>
-        {stickers.map(sticker => <img key={sticker.pack_name} src={sticker.main_icon.xhdpi} role="presentation" />)}
-      </div>
-    );
-  }
-
   constructor(props) {
     super(props);
 
@@ -17,7 +10,7 @@ class StickerMenu extends Component {
 
     this.state = {
       loading: true,
-      stickers: []
+      stickerPacks: []
     };
   }
 
@@ -33,7 +26,7 @@ class StickerMenu extends Component {
       console.log(response);
 
       this.setState({
-        stickers: response.data,
+        stickerPacks: response.data,
         loading: false
       });
 
@@ -43,14 +36,14 @@ class StickerMenu extends Component {
 
   render() {
     return (
-      <div>
+      <section>
         <h1>StickerMenu</h1>
         {
           !this.state.loading
-          ? this.constructor.renderList(this.state.stickers)
+          ? <StickerShop stickerPacks={this.state.stickerPacks} />
           : <p>Loading...</p>
         }
-      </div>
+      </section>
     );
   }
 }
