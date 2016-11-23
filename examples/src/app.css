@@ -5,3 +5,8 @@
 .demo h1 {
   font-size: 1.2rem;
 }
+
+.demo > h1 {
+  padding-bottom: .5rem;
+  border-bottom: 1px solid #ededed;
+}
