@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Sticker({ src }) {
+function Sticker({ src, onClick }) {
   const style = {
     sticker: {
       width: '50px',
@@ -8,11 +8,12 @@ function Sticker({ src }) {
     }
   };
 
-  return <img style={style.sticker} src={src} role="presentation" />;
+  return <img onClick={onClick} style={style.sticker} src={src} role="presentation" />;
 }
 
 Sticker.propTypes = {
-  src: React.PropTypes.string.isRequired
+  src: React.PropTypes.string.isRequired,
+  onClick: React.PropTypes.func.isRequired
 };
 
 export default Sticker;

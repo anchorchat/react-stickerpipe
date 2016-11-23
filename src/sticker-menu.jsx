@@ -40,7 +40,7 @@ class StickerMenu extends Component {
         <h1>StickerMenu</h1>
         {
           !this.state.loading
-          ? <StickerShop stickerPacks={this.state.stickerPacks} />
+          ? <StickerShop client={this.client} stickerPacks={this.state.stickerPacks} />
           : <p>Loading...</p>
         }
       </section>
