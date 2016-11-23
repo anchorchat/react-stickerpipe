@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import _ from 'underscore';
+import StickerPack from './sticker-pack';
 import Sticker from './sticker';
 
 class MyStickerPacks extends Component {
@@ -7,7 +9,8 @@ class MyStickerPacks extends Component {
 
     this.state = {
       stickerPacks: [],
-      loading: true
+      loading: true,
+      currentPack: null
     };
   }
 
@@ -28,11 +31,12 @@ class MyStickerPacks extends Component {
 
       packs.forEach((pack) => {
         const storedPack = client.getPack(pack.pack_name);
-        storedPacks.push(storedPack);
 
         if (!storedPack) {
           // TODO Restore purchase, save to localStorage
           console.log('Did not find pack in localStorage.');
+        } else {
+          storedPacks.push(storedPack);
         }
       });
 
@@ -46,8 +50,22 @@ class MyStickerPacks extends Component {
     });
   }
 
+  showPack(packName) {
+    this.setState({
+      currentPack: packName
+    });
+  }
+
+  renderPack(packName) {
+    const { storedPacks } = this.state;
+
+    const pack = _.find(storedPacks, storedPack => storedPack.name === packName);
+
+    return <StickerPack pack={pack} />;
+  }
+
   render() {
-    const { loading, stickerPacks } = this.state;
+    const { loading, stickerPacks, currentPack } = this.state;
 
     return (
       <section>
@@ -58,10 +76,12 @@ class MyStickerPacks extends Component {
             <Sticker
               key={stickerPack.pack_name}
               src={stickerPack.main_icon.mdpi}
+              onClick={() => this.showPack(stickerPack.pack_name)}
             />
           ))
           : <p>Loading...</p>
         }
+        {currentPack ? this.renderPack(currentPack) : null}
       </section>
     );
   }
