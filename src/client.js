@@ -5,6 +5,22 @@ class StickerPipeClient {
     Object.assign(this, { key, userID, baseUrl });
   }
 
+  getMyPacks(callback) {
+    const options = {
+      url: `${this.baseUrl}/shop/my`,
+      headers: {
+        ApiKey: this.key,
+        Platform: 'JS',
+        UserId: this.userID
+      }
+    };
+
+    request
+      .get(options.url)
+      .set(options.headers)
+      .end(callback);
+  }
+
   getShop(callback) {
     const options = {
       url: `${this.baseUrl}/shop`,

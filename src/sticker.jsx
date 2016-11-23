@@ -13,7 +13,7 @@ function Sticker({ src, onClick }) {
 
 Sticker.propTypes = {
   src: React.PropTypes.string.isRequired,
-  onClick: React.PropTypes.func.isRequired
+  onClick: React.PropTypes.func
 };
 
 export default Sticker;

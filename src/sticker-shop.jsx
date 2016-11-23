@@ -7,8 +7,8 @@ class StickerShop extends Component {
     super();
 
     this.state = {
-      preview: { },
-      loading: true
+      preview: null,
+      loading: false
     };
 
     this.previewPack = this.previewPack.bind(this);
@@ -17,6 +17,10 @@ class StickerShop extends Component {
   previewPack(packName) {
     console.log(packName);
     const { client } = this.props;
+
+    this.setState({
+      loading: true
+    });
 
     client.getPackPreview(packName, (err, res) => {
       if (err) {
@@ -43,6 +47,7 @@ class StickerShop extends Component {
 
     return (
       <section>
+        <h1>Sticker Shop</h1>
         {stickerPacks.map(stickerPack => (
           <Sticker
             key={stickerPack.pack_name}
@@ -51,10 +56,11 @@ class StickerShop extends Component {
           />
         ))}
         {
-          !loading
+          !loading && preview
           ? <StickerPackPreview preview={preview} client={client} />
-          : <p>Loading...</p>
+          : null
         }
+        {loading ? <p>Loading...</p> : null}
       </section>
     );
   }

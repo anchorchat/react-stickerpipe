@@ -17,7 +17,8 @@ class StickerPackPreview extends Component {
         return false;
       }
 
-      console.log(res);
+      const response = JSON.parse(res.text);
+      console.log(response);
 
       return false;
     });

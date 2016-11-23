@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import StickerPipeClient from './client';
+import MyStickerPacks from './my-sticker-packs';
 import StickerShop from './sticker-shop';
 
 class StickerMenu extends Component {
@@ -38,6 +39,7 @@ class StickerMenu extends Component {
     return (
       <section>
         <h1>StickerMenu</h1>
+        <MyStickerPacks client={this.client} />
         {
           !this.state.loading
           ? <StickerShop client={this.client} stickerPacks={this.state.stickerPacks} />
