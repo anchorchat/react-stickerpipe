@@ -1,6 +1,39 @@
 # React StickerPipe
 
-## Project Setup
+## Installation
+
+### src
+
+Install `node_modules` used in `./src`:
+
+```
+$ npm i
+```
+
+Compile `./src` with Babel:
+
+```
+$ npm run compile
+```
+
+### examples
+
+Install `node_modules` used in `./examples`:
+
+```
+$ cd examples && npm i
+```
+
+Create a settings.json file in `./examples/src`:
+
+```
+{
+  "apiKey": "yourApiKey",
+  "userId": "yourUserId"
+}
+```
+
+## Development
 
 ### src
 
@@ -13,15 +46,6 @@ $ npm run watch
 Babel will compile `./src` on changes.
 
 ### examples
-
-Create a settings.json file in `./examples/src`:
-
-```
-{
-  "apiKey": "yourApiKey",
-  "userId": "yourUserId"
-}
-```
 
 To start the webpack server run:
 
