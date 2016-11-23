@@ -64,6 +64,7 @@
     ]
   },
   "dependencies": {
-    "superagent": "^3.0.0"
+    "superagent": "^3.0.0",
+    "underscore": "^1.8.3"
   }
 }
