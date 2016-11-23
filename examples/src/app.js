@@ -1,10 +1,10 @@
 import React from 'react';
 import './app.css';
-import StickerList from '../../lib/index';
+import StickerMenu from '../../lib/index';
 
 function App() {
   return (
-    <StickerList apiKey="bla" userId="test" />
+    <StickerMenu apiKey="bla" userId="test" />
   );
 }
 

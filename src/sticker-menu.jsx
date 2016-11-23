@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import StickerPipeClient from './client';
 
-class StickerList extends Component {
+class StickerMenu extends Component {
   constructor(props) {
     super(props);
 
@@ -9,13 +9,13 @@ class StickerList extends Component {
   }
 
   render() {
-    return <h1>StickerList</h1>;
+    return <h1>StickerMenu</h1>;
   }
 }
 
-StickerList.propTypes = {
+StickerMenu.propTypes = {
   apiKey: React.PropTypes.string.isRequired,
   userId: React.PropTypes.string.isRequired
 };
 
-export default StickerList;
+export default StickerMenu;

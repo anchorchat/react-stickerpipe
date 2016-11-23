@@ -1,3 +1,3 @@
-import StickerList from './sticker-list';
+import StickerMenu from './sticker-menu';
 
-export default StickerList;
+export default StickerMenu;
