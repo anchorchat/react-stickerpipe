@@ -19,6 +19,9 @@ class StickerPackPreview extends Component {
 
       const response = JSON.parse(res.text);
       console.log(response);
+      const pack = response.data;
+
+      client.constructor.storePack(pack.pack_name, pack.title, pack.stickers);
 
       return false;
     });

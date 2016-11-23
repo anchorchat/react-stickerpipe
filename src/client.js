@@ -84,6 +84,30 @@ class StickerPipeClient {
       .set(options.headers)
       .end(callback);
   }
+
+  static storePack(packName, packTitle, packStickers) {
+    const stickers = packStickers.map(packSticker => (
+      {
+        srcset: packSticker.image,
+        stickerId: packSticker.content_id
+      }
+    ));
+
+    try {
+      const key = `${this.userID}-${packName}`;
+      const data = {
+        name: packName,
+        title: packTitle,
+        stickers
+      };
+
+      const value = JSON.stringify(data);
+
+      localStorage.setItem(key, value);
+    } catch (err) {
+      console.warn('Error while saving to localStorage.', err);
+    }
+  }
 }
 
 export default StickerPipeClient;
