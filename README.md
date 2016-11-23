@@ -14,6 +14,16 @@ Babel will compile `./src` on changes.
 
 ### examples
 
+Create a settings.json file in `./examples/src`:
+
+```
+{
+  "apiKey": "yourApiKey",
+  "userId": "yourUserId"
+}
+
+```
+
 To start the webpack server run:
 
 ```
