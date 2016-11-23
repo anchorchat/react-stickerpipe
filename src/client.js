@@ -85,7 +85,7 @@ class StickerPipeClient {
       .end(callback);
   }
 
-  static storePack(packName, packTitle, packStickers) {
+  storePack(packName, packTitle, packStickers) {
     const stickers = packStickers.map(packSticker => (
       {
         srcset: packSticker.image,
