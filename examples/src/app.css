@@ -10,3 +10,12 @@
   padding-bottom: .5rem;
   border-bottom: 1px solid #ededed;
 }
+
+.demo > h1 a {
+  color: #4078c0;
+  text-decoration: none;
+}
+
+.demo > h1:hover a {
+  text-decoration: underline;
+}
