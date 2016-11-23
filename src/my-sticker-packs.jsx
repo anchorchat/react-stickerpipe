@@ -22,10 +22,23 @@ class MyStickerPacks extends Component {
       }
 
       const response = JSON.parse(res.text);
-      console.log(response);
+      const packs = response.data;
+
+      const storedPacks = [];
+
+      packs.forEach((pack) => {
+        const storedPack = client.getPack(pack.pack_name);
+        storedPacks.push(storedPack);
+
+        if (!storedPack) {
+          // TODO Restore purchase, save to localStorage
+          console.log('Did not find pack in localStorage.');
+        }
+      });
 
       this.setState({
         stickerPacks: response.data,
+        storedPacks,
         loading: false
       });
 
