@@ -108,6 +108,20 @@ class StickerPipeClient {
       console.warn('Error while saving to localStorage.', err);
     }
   }
+
+  getPack(packName) {
+    try {
+      const key = `${this.userId}-${packName}`;
+
+      const storedPack = JSON.parse(localStorage.getItem(key));
+
+      return storedPack;
+    } catch (err) {
+      console.warn('Error while retrieving item from localStorage.', err);
+    }
+
+    return null;
+  }
 }
 
 export default StickerPipeClient;
