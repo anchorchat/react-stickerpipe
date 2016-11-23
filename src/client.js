@@ -87,20 +87,3 @@ class StickerPipeClient {
 }
 
 export default StickerPipeClient;
-
-/*
-  Usage:
-
-  const key = 'yourAPIKey'
-  const userId = 'someUserID';
-  const endpoint = 'https://api.stickerpipe.com/api/v2';
-
-  const StickerPipeClient = require('./client.js');
-  const client = new StickerPipeClient(key, userID, baseUrl);
-
-  client.getShop((err, res) => {
-    if(err) throw err;
-    console.log(res);
-  });
-
- */
