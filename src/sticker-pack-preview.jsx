@@ -27,12 +27,18 @@ class StickerPackPreview extends Component {
   render() {
     const { preview } = this.props;
 
+    const style = {
+      preview: {
+        width: '270px'
+      }
+    };
+
     return (
       <section>
         <h1>Preview</h1>
         <section>
           <h1>{preview.title} <button onClick={this.purchasePack}>Purchase</button></h1>
-          <img src={preview.preview.hdpi} alt={preview.title} />
+          <img style={style.preview} src={preview.preview.hdpi} alt={preview.title} />
         </section>
       </section>
     );
