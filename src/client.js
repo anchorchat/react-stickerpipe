@@ -52,6 +52,22 @@ class StickerPipeClient {
       .set(options.headers)
       .end(callback);
   }
+
+  purchasePack(packName, callback) {
+    const options = {
+      url: `${this.baseUrl}/packs/${packName}`,
+      headers: {
+        ApiKey: this.key,
+        Platform: 'JS',
+        UserId: this.userID
+      }
+    };
+
+    request
+      .post(options.url)
+      .set(options.headers)
+      .end(callback);
+  }
 }
 
 export default StickerPipeClient;
