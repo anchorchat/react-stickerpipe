@@ -64,6 +64,6 @@
     ]
   },
   "dependencies": {
-    "request": "^2.79.0"
+    "superagent": "^3.0.0"
   }
 }

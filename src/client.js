@@ -1,4 +1,4 @@
-import request from 'request';
+import request from 'superagent';
 
 class StickerPipeClient {
   constructor(key, userID, baseUrl) {
@@ -15,13 +15,10 @@ class StickerPipeClient {
       }
     };
 
-    request.get(options, (error, response, body) => {
-      if (!error && response.statusCode === 200) {
-        callback(null, body);
-      } else {
-        callback(error);
-      }
-    });
+    request
+      .get(options.url)
+      .set(options.headers)
+      .end(callback);
   }
 
   getSticker(stickerId, callback) {
@@ -34,13 +31,10 @@ class StickerPipeClient {
       }
     };
 
-    request.get(options, (error, response, body) => {
-      if (!error && response.statusCode === 200) {
-        callback(null, body);
-      } else {
-        callback(error);
-      }
-    });
+    request
+      .get(options.url)
+      .set(options.headers)
+      .end(callback);
   }
 }
 
