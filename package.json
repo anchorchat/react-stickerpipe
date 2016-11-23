@@ -4,6 +4,7 @@
   "description": "React Component for StickerPipe API",
   "main": "lib/react-stickerpipe.js",
   "scripts": {
+    "watch": "babel -d lib/ -w src/",
     "compile": "babel -d lib/ src/",
     "prepublish": "npm run compile"
   },
