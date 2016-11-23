@@ -1,8 +1,8 @@
 import request from 'superagent';
 
 class StickerPipeClient {
-  constructor(key, userID, baseUrl) {
-    Object.assign(this, { key, userID, baseUrl });
+  constructor(key, userId, baseUrl) {
+    Object.assign(this, { key, userId, baseUrl });
   }
 
   getMyPacks(callback) {
@@ -11,7 +11,7 @@ class StickerPipeClient {
       headers: {
         ApiKey: this.key,
         Platform: 'JS',
-        UserId: this.userID
+        UserId: this.userId
       }
     };
 
@@ -27,7 +27,7 @@ class StickerPipeClient {
       headers: {
         ApiKey: this.key,
         Platform: 'JS',
-        UserId: this.userID
+        UserId: this.userId
       }
     };
 
@@ -43,7 +43,7 @@ class StickerPipeClient {
       headers: {
         ApiKey: this.key,
         Platform: 'JS',
-        UserId: this.userID
+        UserId: this.userId
       }
     };
 
@@ -59,7 +59,7 @@ class StickerPipeClient {
       headers: {
         ApiKey: this.key,
         Platform: 'JS',
-        UserId: this.userID
+        UserId: this.userId
       }
     };
 
@@ -75,7 +75,7 @@ class StickerPipeClient {
       headers: {
         ApiKey: this.key,
         Platform: 'JS',
-        UserId: this.userID
+        UserId: this.userId
       }
     };
 
@@ -94,7 +94,7 @@ class StickerPipeClient {
     ));
 
     try {
-      const key = `${this.userID}-${packName}`;
+      const key = `${this.userId}-${packName}`;
       const data = {
         name: packName,
         title: packTitle,
