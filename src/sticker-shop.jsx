@@ -8,10 +8,30 @@ class StickerShop extends Component {
 
     this.state = {
       preview: null,
-      loading: false
+      stickerPacks: []
     };
 
     this.previewPack = this.previewPack.bind(this);
+  }
+
+  componentWillMount() {
+    const { client } = this.props;
+
+    client.getShop((err, res) => {
+      if (err) {
+        console.log(err);
+
+        return false;
+      }
+
+      const response = JSON.parse(res.text);
+
+      this.setState({
+        stickerPacks: response.data
+      });
+
+      return false;
+    });
   }
 
   previewPack(packName) {
@@ -31,8 +51,7 @@ class StickerShop extends Component {
       const response = JSON.parse(res.text);
 
       this.setState({
-        preview: response.data,
-        loading: false
+        preview: response.data
       });
 
       return false;
@@ -40,21 +59,25 @@ class StickerShop extends Component {
   }
 
   render() {
-    const { stickerPacks, client, storage } = this.props;
-    const { loading, preview } = this.state;
+    const { client, storage } = this.props;
+    const { loading, preview, stickerPacks } = this.state;
 
     return (
       <section>
         <h1>Sticker Shop</h1>
-        {stickerPacks.map(stickerPack => (
-          <Sticker
-            key={stickerPack.pack_name}
-            onClick={() => this.previewPack(stickerPack.pack_name)}
-            src={stickerPack.main_icon.mdpi}
-          />
-        ))}
         {
-          !loading && preview
+          stickerPacks.length > 0
+          ? stickerPacks.map(stickerPack => (
+            <Sticker
+              key={stickerPack.pack_name}
+              onClick={() => this.previewPack(stickerPack.pack_name)}
+              src={stickerPack.main_icon.mdpi}
+            />
+          ))
+          : null
+        }
+        {
+          preview
           ? <StickerPackPreview preview={preview} client={client} storage={storage} />
           : null
         }
@@ -65,16 +88,10 @@ class StickerShop extends Component {
 }
 
 StickerShop.propTypes = {
-  stickerPacks: React.PropTypes.arrayOf(React.PropTypes.shape({
-    pack_name: React.PropTypes.string.isRequired,
-    title: React.PropTypes.string.isRequired,
-    pricepoint: React.PropTypes.string.isRequired,
-    main_icon: React.PropTypes.shape({
-      mdpi: React.PropTypes.string.isRequired,
-      hdpi: React.PropTypes.string.isRequired
-    })
-  })).isRequired,
-  client: React.PropTypes.object.isRequired,
+  client: React.PropTypes.shape({
+    getShop: React.PropTypes.func.isRequired,
+    getPackPreview: React.PropTypes.func.isRequired
+  }).isRequired,
   storage: React.PropTypes.shape({
     storePack: React.PropTypes.func.isRequired
   }).isRequired
