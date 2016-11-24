@@ -15,7 +15,7 @@ class StickerShop extends Component {
   }
 
   componentWillMount() {
-    const { client } = this.props;
+    const { client } = this.context;
 
     client.getShop((err, res) => {
       if (err) {
@@ -35,7 +35,7 @@ class StickerShop extends Component {
   }
 
   previewPack(packName) {
-    const { client } = this.props;
+    const { client } = this.context;
 
     this.setState({
       loading: true
@@ -59,7 +59,6 @@ class StickerShop extends Component {
   }
 
   render() {
-    const { client, storage } = this.props;
     const { preview, stickerPacks } = this.state;
 
     return (
@@ -78,7 +77,7 @@ class StickerShop extends Component {
         }
         {
           preview
-          ? <StickerPackPreview preview={preview} client={client} storage={storage} />
+          ? <StickerPackPreview preview={preview} />
           : null
         }
       </section>
@@ -86,13 +85,10 @@ class StickerShop extends Component {
   }
 }
 
-StickerShop.propTypes = {
+StickerShop.contextTypes = {
   client: React.PropTypes.shape({
-    getShop: React.PropTypes.func.isRequired,
-    getPackPreview: React.PropTypes.func.isRequired
-  }).isRequired,
-  storage: React.PropTypes.shape({
-    storePack: React.PropTypes.func.isRequired
+    getMyPacks: React.PropTypes.func.isRequired,
+    purchasePack: React.PropTypes.func.isRequired
   }).isRequired
 };
 

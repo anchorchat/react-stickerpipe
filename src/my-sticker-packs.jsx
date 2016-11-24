@@ -15,7 +15,7 @@ class MyStickerPacks extends Component {
   }
 
   componentWillMount() {
-    const { client } = this.props;
+    const { client } = this.context;
 
     client.getMyPacks((err, res) => {
       if (err) {
@@ -36,7 +36,7 @@ class MyStickerPacks extends Component {
   }
 
   showPack(packName) {
-    const { client, storage } = this.props;
+    const { client, storage } = this.context;
 
     const storedPack = storage.getPack(packName);
 
@@ -95,6 +95,10 @@ class MyStickerPacks extends Component {
 }
 
 MyStickerPacks.propTypes = {
+  sendSticker: React.PropTypes.func.isRequired
+};
+
+MyStickerPacks.contextTypes = {
   client: React.PropTypes.shape({
     getMyPacks: React.PropTypes.func.isRequired,
     purchasePack: React.PropTypes.func.isRequired
@@ -102,8 +106,7 @@ MyStickerPacks.propTypes = {
   storage: React.PropTypes.shape({
     storePack: React.PropTypes.func.isRequired,
     getPack: React.PropTypes.func.isRequired
-  }).isRequired,
-  sendSticker: React.PropTypes.func.isRequired
+  }).isRequired
 };
 
 export default MyStickerPacks;

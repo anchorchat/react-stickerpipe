@@ -8,7 +8,8 @@ class StickerPackPreview extends Component {
   }
 
   purchasePack() {
-    const { client, preview, storage } = this.props;
+    const { preview } = this.props;
+    const { client, storage } = this.context;
 
     client.purchasePack(preview.pack_name, (err, res) => {
       if (err) {
@@ -56,10 +57,17 @@ StickerPackPreview.propTypes = {
       mdpi: React.PropTypes.string.isRequired,
       hdpi: React.PropTypes.string.isRequired
     })
-  }),
-  client: React.PropTypes.object.isRequired,
+  })
+};
+
+StickerPackPreview.contextTypes = {
+  client: React.PropTypes.shape({
+    getMyPacks: React.PropTypes.func.isRequired,
+    purchasePack: React.PropTypes.func.isRequired
+  }).isRequired,
   storage: React.PropTypes.shape({
-    storePack: React.PropTypes.func.isRequired
+    storePack: React.PropTypes.func.isRequired,
+    getPack: React.PropTypes.func.isRequired
   }).isRequired
 };
 
