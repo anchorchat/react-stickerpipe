@@ -96,7 +96,10 @@ class MyStickerPacks extends Component {
 }
 
 MyStickerPacks.propTypes = {
-  client: React.PropTypes.object.isRequired,
+  client: React.PropTypes.shape({
+    getMyPacks: React.PropTypes.func.isRequired,
+    purchasePack: React.PropTypes.func.isRequired
+  }).isRequired,
   storage: React.PropTypes.shape({
     storePack: React.PropTypes.func.isRequired,
     getPack: React.PropTypes.func.isRequired
