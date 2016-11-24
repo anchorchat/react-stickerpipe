@@ -8,7 +8,7 @@ class StickerPackPreview extends Component {
   }
 
   purchasePack() {
-    const { client, preview } = this.props;
+    const { client, preview, storage } = this.props;
 
     client.purchasePack(preview.pack_name, (err, res) => {
       if (err) {
@@ -20,7 +20,7 @@ class StickerPackPreview extends Component {
       const response = JSON.parse(res.text);
       const pack = response.data;
 
-      client.storePack(pack.pack_name, pack.title, pack.stickers);
+      storage.storePack(pack.pack_name, pack.title, pack.stickers);
 
       return false;
     });
@@ -56,7 +56,10 @@ StickerPackPreview.propTypes = {
       hdpi: React.PropTypes.string.isRequired
     })
   }),
-  client: React.PropTypes.object.isRequired
+  client: React.PropTypes.object.isRequired,
+  storage: React.PropTypes.shape({
+    storePack: React.PropTypes.func.isRequired
+  }).isRequired
 };
 
 export default StickerPackPreview;

@@ -38,9 +38,9 @@ class MyStickerPacks extends Component {
   }
 
   showPack(packName) {
-    const { client } = this.props;
+    const { client, storage } = this.props;
 
-    const storedPack = client.getPack(packName);
+    const storedPack = storage.getPack(packName);
 
     if (storedPack) {
       this.setState({
@@ -60,7 +60,7 @@ class MyStickerPacks extends Component {
       const response = JSON.parse(res.text);
       const pack = response.data;
 
-      client.storePack(pack.pack_name, pack.title, pack.stickers);
+      storage.storePack(pack.pack_name, pack.title, pack.stickers);
 
       this.setState({
         pack
@@ -96,7 +96,11 @@ class MyStickerPacks extends Component {
 }
 
 MyStickerPacks.propTypes = {
-  client: React.PropTypes.object.isRequired
+  client: React.PropTypes.object.isRequired,
+  storage: React.PropTypes.shape({
+    storePack: React.PropTypes.func.isRequired,
+    getPack: React.PropTypes.func.isRequired
+  }).isRequired
 };
 
 export default MyStickerPacks;

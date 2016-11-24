@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import StickerPipeClient from './client';
+import Storage from './storage';
 import MyStickerPacks from './my-sticker-packs';
 import StickerShop from './sticker-shop';
 
@@ -8,6 +9,7 @@ class StickerMenu extends Component {
     super(props);
 
     this.client = new StickerPipeClient(props.apiKey, props.userId, 'https://api.stickerpipe.com/api/v2');
+    this.storage = new Storage(props.userId);
 
     this.state = {
       loading: true,
@@ -38,10 +40,14 @@ class StickerMenu extends Component {
   render() {
     return (
       <section>
-        <MyStickerPacks client={this.client} />
+        <MyStickerPacks client={this.client} storage={this.storage} />
         {
           !this.state.loading
-          ? <StickerShop client={this.client} stickerPacks={this.state.stickerPacks} />
+          ? <StickerShop
+            client={this.client}
+            storage={this.storage}
+            stickerPacks={this.state.stickerPacks}
+          />
           : <p>Loading...</p>
         }
       </section>

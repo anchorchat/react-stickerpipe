@@ -15,7 +15,6 @@ class StickerShop extends Component {
   }
 
   previewPack(packName) {
-    console.log(packName);
     const { client } = this.props;
 
     this.setState({
@@ -30,7 +29,6 @@ class StickerShop extends Component {
       }
 
       const response = JSON.parse(res.text);
-      console.log(response);
 
       this.setState({
         preview: response.data,
@@ -42,7 +40,7 @@ class StickerShop extends Component {
   }
 
   render() {
-    const { stickerPacks, client } = this.props;
+    const { stickerPacks, client, storage } = this.props;
     const { loading, preview } = this.state;
 
     return (
@@ -57,7 +55,7 @@ class StickerShop extends Component {
         ))}
         {
           !loading && preview
-          ? <StickerPackPreview preview={preview} client={client} />
+          ? <StickerPackPreview preview={preview} client={client} storage={storage} />
           : null
         }
         {loading ? <p>Loading...</p> : null}
@@ -76,7 +74,10 @@ StickerShop.propTypes = {
       hdpi: React.PropTypes.string.isRequired
     })
   })).isRequired,
-  client: React.PropTypes.object.isRequired
+  client: React.PropTypes.object.isRequired,
+  storage: React.PropTypes.shape({
+    storePack: React.PropTypes.func.isRequired
+  }).isRequired
 };
 
 export default StickerShop;
