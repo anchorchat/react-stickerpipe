@@ -8,7 +8,6 @@ class MyStickerPacks extends Component {
 
     this.state = {
       stickerPacks: [],
-      loading: true,
       pack: null
     };
 
@@ -29,8 +28,7 @@ class MyStickerPacks extends Component {
       const stickerPacks = response.data;
 
       this.setState({
-        stickerPacks,
-        loading: false
+        stickerPacks
       });
 
       return false;
@@ -73,13 +71,13 @@ class MyStickerPacks extends Component {
   }
 
   render() {
-    const { loading, stickerPacks, pack } = this.state;
+    const { stickerPacks, pack } = this.state;
 
     return (
       <section>
         <h1>My Packs</h1>
         {
-          !loading
+          !stickerPacks.lenght > 0
           ? stickerPacks.map(stickerPack => (
             <Sticker
               key={stickerPack.pack_name}
