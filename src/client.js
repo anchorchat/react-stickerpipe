@@ -15,8 +15,6 @@ class StickerPipeClient {
       }
     };
 
-    request.withCredentials = false;
-
     request
       .get(options.url)
       .set(options.headers)
@@ -32,8 +30,6 @@ class StickerPipeClient {
         UserId: this.userId
       }
     };
-
-    request.withCredentials = false;
 
     request
       .get(options.url)
@@ -51,8 +47,6 @@ class StickerPipeClient {
       }
     };
 
-    request.withCredentials = false;
-
     request
       .get(options.url)
       .set(options.headers)
@@ -69,8 +63,6 @@ class StickerPipeClient {
       }
     };
 
-    request.withCredentials = false;
-
     request
       .get(options.url)
       .set(options.headers)
@@ -86,8 +78,6 @@ class StickerPipeClient {
         UserId: this.userId
       }
     };
-
-    request.withCredentials = false;
 
     request
       .post(options.url)
