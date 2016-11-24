@@ -15,7 +15,6 @@ class App extends Component {
   }
 
   sendSticker(sticker) {
-    console.log(sticker);
     this.setState({
       sticker
     });
@@ -23,6 +22,12 @@ class App extends Component {
 
   render() {
     const { sticker } = this.state;
+
+    const style = {
+      sticker: {
+        width: '120px'
+      }
+    };
 
     return (
       <section className="demo">
@@ -35,7 +40,7 @@ class App extends Component {
             React StickerPipe
           </a>
         </h1>
-        {sticker ? <img src={sticker.image.mdpi} alt="sticker" /> : null}
+        {sticker ? <img style={style.sticker} src={sticker.image.hdpi} alt="sticker" /> : null}
         <StickerMenu
           apiKey={settings.apiKey}
           userId={settings.userId}
