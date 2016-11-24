@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import _ from 'underscore';
 import StickerPack from './sticker-pack';
 import Sticker from './sticker';
 
@@ -10,8 +9,10 @@ class MyStickerPacks extends Component {
     this.state = {
       stickerPacks: [],
       loading: true,
-      currentPack: null
+      pack: null
     };
+
+    this.showPack = this.showPack.bind(this);
   }
 
   componentWillMount() {
@@ -25,24 +26,10 @@ class MyStickerPacks extends Component {
       }
 
       const response = JSON.parse(res.text);
-      const packs = response.data;
-
-      const storedPacks = [];
-
-      packs.forEach((pack) => {
-        const storedPack = client.getPack(pack.pack_name);
-
-        if (!storedPack) {
-          // TODO Restore purchase, save to localStorage
-          console.log('Did not find pack in localStorage.');
-        } else {
-          storedPacks.push(storedPack);
-        }
-      });
+      const stickerPacks = response.data;
 
       this.setState({
-        stickerPacks: response.data,
-        storedPacks,
+        stickerPacks,
         loading: false
       });
 
@@ -51,21 +38,42 @@ class MyStickerPacks extends Component {
   }
 
   showPack(packName) {
-    this.setState({
-      currentPack: packName
+    const { client } = this.props;
+
+    const storedPack = client.getPack(packName);
+
+    if (storedPack) {
+      this.setState({
+        pack: storedPack
+      });
+
+      return false;
+    }
+
+    client.purchasePack(packName, (err, res) => {
+      if (err) {
+        console.log(err);
+
+        return false;
+      }
+
+      const response = JSON.parse(res.text);
+      const pack = response.data;
+
+      client.storePack(pack.pack_name, pack.title, pack.stickers);
+
+      this.setState({
+        pack
+      });
+
+      return false;
     });
-  }
 
-  renderPack(packName) {
-    const { storedPacks } = this.state;
-
-    const pack = _.find(storedPacks, storedPack => storedPack.name === packName);
-
-    return <StickerPack pack={pack} />;
+    return false;
   }
 
   render() {
-    const { loading, stickerPacks, currentPack } = this.state;
+    const { loading, stickerPacks, pack } = this.state;
 
     return (
       <section>
@@ -81,7 +89,7 @@ class MyStickerPacks extends Component {
           ))
           : <p>Loading...</p>
         }
-        {currentPack ? this.renderPack(currentPack) : null}
+        {pack ? <StickerPack pack={pack} /> : null}
       </section>
     );
   }
