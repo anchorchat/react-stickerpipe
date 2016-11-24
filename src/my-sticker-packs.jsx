@@ -71,8 +71,8 @@ class MyStickerPacks extends Component {
   }
 
   render() {
-    const { stickerPacks, pack } = this.state;
-    const { sendSticker } = this.props;
+    const { pack } = this.state;
+    const { sendSticker, stickerPacks } = this.props;
 
     return (
       <section>
@@ -95,7 +95,16 @@ class MyStickerPacks extends Component {
 }
 
 MyStickerPacks.propTypes = {
-  sendSticker: React.PropTypes.func.isRequired
+  sendSticker: React.PropTypes.func.isRequired,
+  stickerPacks: React.PropTypes.arrayOf(React.PropTypes.shape({
+    pack_name: React.PropTypes.string.isRequired,
+    main_icon: React.PropTypes.shape({
+      mdpi: React.PropTypes.string.isRequired,
+      hdpi: React.PropTypes.string.isRequired,
+      xhdpi: React.PropTypes.string.isRequired,
+      xxhdpi: React.PropTypes.string.isRequired
+    }).isRequired
+  })).isRequired
 };
 
 MyStickerPacks.contextTypes = {

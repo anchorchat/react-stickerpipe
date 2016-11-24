@@ -8,7 +8,7 @@ class StickerPackPreview extends Component {
   }
 
   purchasePack() {
-    const { preview } = this.props;
+    const { preview, onPurchase } = this.props;
     const { client, storage } = this.context;
 
     client.purchasePack(preview.pack_name, (err, res) => {
@@ -22,6 +22,7 @@ class StickerPackPreview extends Component {
       const pack = response.data;
 
       storage.storePack(pack.pack_name, pack.title, pack.stickers);
+      onPurchase();
 
       return false;
     });
@@ -57,7 +58,8 @@ StickerPackPreview.propTypes = {
       mdpi: React.PropTypes.string.isRequired,
       hdpi: React.PropTypes.string.isRequired
     })
-  })
+  }),
+  onPurchase: React.PropTypes.func.isRequired
 };
 
 StickerPackPreview.contextTypes = {

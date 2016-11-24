@@ -42,7 +42,7 @@ StickerPack.propTypes = {
           mdpi: React.PropTypes.string.isRequired,
           hdpi: React.PropTypes.string.isRequired,
           xhdpi: React.PropTypes.string.isRequired,
-          xxhdpi: React.PropTypes.string.isRequired,
+          xxhdpi: React.PropTypes.string.isRequired
         }).isRequired
       }).isRequired
     ).isRequired

@@ -60,6 +60,7 @@ class StickerShop extends Component {
 
   render() {
     const { preview, stickerPacks } = this.state;
+    const { onPurchase } = this.props;
 
     return (
       <section>
@@ -77,13 +78,17 @@ class StickerShop extends Component {
         }
         {
           preview
-          ? <StickerPackPreview preview={preview} />
+          ? <StickerPackPreview preview={preview} onPurchase={onPurchase} />
           : null
         }
       </section>
     );
   }
 }
+
+StickerShop.propTypes = {
+  onPurchase: React.PropTypes.func.isRequired
+};
 
 StickerShop.contextTypes = {
   client: React.PropTypes.shape({
