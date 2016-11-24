@@ -60,7 +60,7 @@ class StickerShop extends Component {
 
   render() {
     const { client, storage } = this.props;
-    const { loading, preview, stickerPacks } = this.state;
+    const { preview, stickerPacks } = this.state;
 
     return (
       <section>
@@ -81,7 +81,6 @@ class StickerShop extends Component {
           ? <StickerPackPreview preview={preview} client={client} storage={storage} />
           : null
         }
-        {loading ? <p>Loading...</p> : null}
       </section>
     );
   }
