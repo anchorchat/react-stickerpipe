@@ -1,6 +1,6 @@
 {
   "name": "react-stickerpipe",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "React Component for StickerPipe API",
   "main": "lib/index.js",
   "scripts": {
