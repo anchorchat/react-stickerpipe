@@ -31,7 +31,20 @@ class StickerPack extends Component {
 }
 
 StickerPack.propTypes = {
-  pack: React.PropTypes.object.isRequired
+  pack: React.PropTypes.shape({
+    title: React.PropTypes.string.isRequired,
+    stickers: React.PropTypes.arrayOf(
+      React.PropTypes.shape({
+        content_id: React.PropTypes.number.isRequired,
+        image: React.PropTypes.shape({
+          mdpi: React.PropTypes.string.isRequired,
+          hdpi: React.PropTypes.string.isRequired,
+          xhdpi: React.PropTypes.string.isRequired,
+          xxhdpi: React.PropTypes.string.isRequired,
+        }).isRequired
+      }).isRequired
+    ).isRequired
+  }).isRequired
 };
 
 export default StickerPack;
