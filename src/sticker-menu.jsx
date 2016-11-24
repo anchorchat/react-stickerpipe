@@ -55,7 +55,7 @@ class StickerMenu extends Component {
     return (
       <section>
         <MyStickerPacks sendSticker={sendSticker} stickerPacks={stickerPacks} />
-        <StickerShop onPurchase={this.getMyPacks} />
+        <StickerShop getMyPacks={this.getMyPacks} />
       </section>
     );
   }

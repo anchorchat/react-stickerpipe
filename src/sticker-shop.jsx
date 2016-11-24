@@ -12,6 +12,7 @@ class StickerShop extends Component {
     };
 
     this.previewPack = this.previewPack.bind(this);
+    this.onPurchase = this.onPurchase.bind(this);
   }
 
   componentWillMount() {
@@ -31,6 +32,15 @@ class StickerShop extends Component {
       });
 
       return false;
+    });
+  }
+
+  onPurchase() {
+    const { getMyPacks } = this.props;
+
+    getMyPacks();
+    this.setState({
+      preview: null
     });
   }
 
@@ -60,7 +70,6 @@ class StickerShop extends Component {
 
   render() {
     const { preview, stickerPacks } = this.state;
-    const { onPurchase } = this.props;
 
     return (
       <section>
@@ -78,7 +87,7 @@ class StickerShop extends Component {
         }
         {
           preview
-          ? <StickerPackPreview preview={preview} onPurchase={onPurchase} />
+          ? <StickerPackPreview preview={preview} onPurchase={this.onPurchase} />
           : null
         }
       </section>
@@ -87,7 +96,7 @@ class StickerShop extends Component {
 }
 
 StickerShop.propTypes = {
-  onPurchase: React.PropTypes.func.isRequired
+  getMyPacks: React.PropTypes.func.isRequired
 };
 
 StickerShop.contextTypes = {
