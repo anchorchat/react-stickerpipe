@@ -13,9 +13,11 @@ class StickerMenu extends Component {
   }
 
   render() {
+    const { sendSticker } = this.props;
+
     return (
       <section>
-        <MyStickerPacks client={this.client} storage={this.storage} />
+        <MyStickerPacks client={this.client} storage={this.storage} sendSticker={sendSticker} />
         <StickerShop client={this.client} storage={this.storage} />
       </section>
     );
@@ -24,7 +26,8 @@ class StickerMenu extends Component {
 
 StickerMenu.propTypes = {
   apiKey: React.PropTypes.string.isRequired,
-  userId: React.PropTypes.string.isRequired
+  userId: React.PropTypes.string.isRequired,
+  sendSticker: React.PropTypes.func.isRequired
 };
 
 export default StickerMenu;

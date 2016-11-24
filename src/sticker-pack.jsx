@@ -9,7 +9,9 @@ class StickerPack extends Component {
   }
 
   sendSticker(sticker) {
-    console.log(sticker);
+    const { sendSticker } = this.props;
+
+    sendSticker(sticker);
   }
 
   render() {
@@ -44,7 +46,8 @@ StickerPack.propTypes = {
         }).isRequired
       }).isRequired
     ).isRequired
-  }).isRequired
+  }).isRequired,
+  sendSticker: React.PropTypes.func.isRequired
 };
 
 export default StickerPack;

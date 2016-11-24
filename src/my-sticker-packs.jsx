@@ -72,6 +72,7 @@ class MyStickerPacks extends Component {
 
   render() {
     const { stickerPacks, pack } = this.state;
+    const { sendSticker } = this.props;
 
     return (
       <section>
@@ -87,7 +88,7 @@ class MyStickerPacks extends Component {
           ))
           : <p>Loading...</p>
         }
-        {pack ? <StickerPack pack={pack} /> : null}
+        {pack ? <StickerPack pack={pack} sendSticker={sendSticker} /> : null}
       </section>
     );
   }
@@ -101,7 +102,8 @@ MyStickerPacks.propTypes = {
   storage: React.PropTypes.shape({
     storePack: React.PropTypes.func.isRequired,
     getPack: React.PropTypes.func.isRequired
-  }).isRequired
+  }).isRequired,
+  sendSticker: React.PropTypes.func.isRequired
 };
 
 export default MyStickerPacks;
