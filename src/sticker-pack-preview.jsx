@@ -39,8 +39,9 @@ class StickerPackPreview extends Component {
       <section>
         <h1>Preview</h1>
         <section>
-          <h1>{preview.title} <button onClick={this.purchasePack}>Purchase</button></h1>
+          <h1>{preview.title}</h1>
           <img style={style.preview} src={preview.preview.hdpi} alt={preview.title} />
+          <button onClick={this.purchasePack}>Purchase</button>
         </section>
       </section>
     );
