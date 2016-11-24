@@ -88,8 +88,8 @@ class StickerPipeClient {
   storePack(packName, packTitle, packStickers) {
     const stickers = packStickers.map(packSticker => (
       {
-        srcset: packSticker.image,
-        stickerId: packSticker.content_id
+        image: packSticker.image,
+        content_id: packSticker.content_id
       }
     ));
 
