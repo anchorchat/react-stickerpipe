@@ -20,8 +20,8 @@ class StickerPack extends Component {
         <p>{pack.title}</p>
         {pack.stickers.map(sticker => (
           <Sticker
-            key={sticker.stickerId}
-            src={sticker.srcset.mdpi}
+            key={sticker.content_id}
+            src={sticker.image.mdpi}
             onClick={() => this.sendSticker(sticker)}
           />
         ))}
