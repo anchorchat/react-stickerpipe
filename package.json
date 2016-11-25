@@ -2,7 +2,7 @@
   "name": "react-stickerpipe",
   "version": "1.2.4",
   "description": "React Component for StickerPipe API",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "files": [
     "dist/*"
   ],
