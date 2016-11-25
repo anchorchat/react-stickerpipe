@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import parseResponse from './parse-response';
 
 class StickerPackPreview extends Component {
   constructor() {
@@ -18,8 +19,7 @@ class StickerPackPreview extends Component {
         return false;
       }
 
-      const response = JSON.parse(res.text);
-      const pack = response.data;
+      const pack = parseResponse(res);
 
       storage.storePack(pack.pack_name, pack.title, pack.stickers);
       onPurchase();

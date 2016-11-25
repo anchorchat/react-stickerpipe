@@ -3,6 +3,7 @@ import StickerPipeClient from './client';
 import Storage from './storage';
 import MyStickerPacks from './my-sticker-packs';
 import StickerShop from './sticker-shop';
+import parseResponse from './parse-response';
 
 class StickerMenu extends Component {
   constructor(props) {
@@ -47,8 +48,7 @@ class StickerMenu extends Component {
         return false;
       }
 
-      const response = JSON.parse(res.text);
-      const stickerPacks = response.data;
+      const stickerPacks = parseResponse(res);
 
       this.setState({
         stickerPacks
