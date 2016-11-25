@@ -73,7 +73,7 @@ class StickerShop extends Component {
     const { preview, stickerPacks } = this.state;
 
     return (
-      <section>
+      <section className="sticker-shop">
         <h1>Sticker Shop</h1>
         {
           stickerPacks.length > 0

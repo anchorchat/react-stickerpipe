@@ -63,7 +63,7 @@ class StickerMenu extends Component {
     const { stickerPacks } = this.state;
 
     return (
-      <section>
+      <section className="sticker-menu">
         <MyStickerPacks sendSticker={sendSticker} stickerPacks={stickerPacks} />
         <StickerShop getMyPacks={this.getMyPacks} />
       </section>

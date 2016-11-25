@@ -18,8 +18,8 @@ class StickerPack extends Component {
     const { pack } = this.props;
 
     return (
-      <section>
-        <p>{pack.title}</p>
+      <section className="sticker-pack">
+        <h1>{pack.title}</h1>
         {pack.stickers.map(sticker => (
           <Sticker
             key={sticker.content_id}

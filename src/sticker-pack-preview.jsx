@@ -38,7 +38,7 @@ class StickerPackPreview extends Component {
     };
 
     return (
-      <section>
+      <section className="sticker-pack-preview">
         <h1>Preview</h1>
         <section>
           <h1>{preview.title}</h1>

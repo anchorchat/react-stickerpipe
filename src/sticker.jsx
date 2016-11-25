@@ -8,7 +8,15 @@ function Sticker({ src, onClick }) {
     }
   };
 
-  return <img onClick={onClick} style={style.sticker} src={src} role="presentation" />;
+  return (
+    <img
+      className="sticker"
+      onClick={onClick}
+      style={style.sticker}
+      src={src}
+      role="presentation"
+    />
+  );
 }
 
 Sticker.propTypes = {

@@ -74,7 +74,7 @@ class MyStickerPacks extends Component {
     const { sendSticker, stickerPacks } = this.props;
 
     return (
-      <section>
+      <section className="my-packs">
         <h1>My Packs</h1>
         {
           !stickerPacks.lenght > 0
