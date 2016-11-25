@@ -11,7 +11,7 @@ Install from npm
 
 Basic Usage
 
-```
+```javascript
 import StickerMenu from 'react-stickerpipe';
 
 function sendSticker(sticker) {
@@ -31,7 +31,7 @@ function MyComponent() {
 
 You can also pass your own API client as `client` to `<StickerMenu />`. The client must contain the following methods:
 
-```
+```javascript
 // Get the purchased packs for the current user
 getMyPacks() {}
 
@@ -71,7 +71,7 @@ $ cd examples && npm i
 
 Create a settings.json file in `./examples/src`:
 
-```
+```json
 {
   "apiKey": "yourApiKey",
   "userId": "yourUserId"
