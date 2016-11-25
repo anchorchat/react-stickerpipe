@@ -9,7 +9,6 @@
   "scripts": {
     "watch": "babel -d dist/ -w src/",
     "compile": "babel -d dist/ src/",
-    "prepublish": "npm run compile",
     "lint": "eslint src/*",
     "prepublish": "npm run lint && npm run compile"
   },
