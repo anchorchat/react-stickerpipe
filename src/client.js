@@ -5,9 +5,9 @@ class StickerPipeClient {
     Object.assign(this, { key, userId, baseUrl });
   }
 
-  getMyPacks(callback) {
+  _performRequest(url, method, callback) {
     const options = {
-      url: `${this.baseUrl}/shop/my`,
+      url,
       headers: {
         ApiKey: this.key,
         Platform: 'JS',
@@ -16,57 +16,25 @@ class StickerPipeClient {
     };
 
     request
-      .get(options.url)
+      [method](options.url)
       .set(options.headers)
       .end(callback);
+  }
+
+  getMyPacks(callback) {
+    this._performRequest(`${this.baseUrl}/shop/my`, 'get', callback);
   }
 
   getShop(callback) {
-    const options = {
-      url: `${this.baseUrl}/shop`,
-      headers: {
-        ApiKey: this.key,
-        Platform: 'JS',
-        UserId: this.userId
-      }
-    };
-
-    request
-      .get(options.url)
-      .set(options.headers)
-      .end(callback);
+    this._performRequest(`${this.baseUrl}/shop`, 'get', callback);
   }
 
   getPackPreview(packName, callback) {
-    const options = {
-      url: `${this.baseUrl}/packs/${packName}`,
-      headers: {
-        ApiKey: this.key,
-        Platform: 'JS',
-        UserId: this.userId
-      }
-    };
-
-    request
-      .get(options.url)
-      .set(options.headers)
-      .end(callback);
+    this._performRequest(`${this.baseUrl}/packs/${packName}`, 'get', callback);
   }
 
   purchasePack(packName, callback) {
-    const options = {
-      url: `${this.baseUrl}/packs/${packName}`,
-      headers: {
-        ApiKey: this.key,
-        Platform: 'JS',
-        UserId: this.userId
-      }
-    };
-
-    request
-      .post(options.url)
-      .set(options.headers)
-      .end(callback);
+    this._performRequest(`${this.baseUrl}/packs/${packName}`, 'post', callback);
   }
 }
 
