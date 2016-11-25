@@ -1,6 +1,6 @@
 import request from 'superagent';
 
-function performRequest(url, method, callback) {
+function performRequest(method, url, callback) {
   const options = {
     url,
     headers: {
@@ -22,19 +22,19 @@ class StickerPipeClient {
   }
 
   getMyPacks(callback) {
-    performRequest(`${this.baseUrl}/shop/my`, 'get', callback);
+    performRequest('get', `${this.baseUrl}/shop/my`, callback);
   }
 
   getShop(callback) {
-    performRequest(`${this.baseUrl}/shop`, 'get', callback);
+    performRequest('get', `${this.baseUrl}/shop`, callback);
   }
 
   getPackPreview(packName, callback) {
-    performRequest(`${this.baseUrl}/packs/${packName}`, 'get', callback);
+    performRequest('get', `${this.baseUrl}/packs/${packName}`, callback);
   }
 
   purchasePack(packName, callback) {
-    performRequest(`${this.baseUrl}/packs/${packName}`, 'post', callback);
+    performRequest('post', `${this.baseUrl}/packs/${packName}`, callback);
   }
 }
 
