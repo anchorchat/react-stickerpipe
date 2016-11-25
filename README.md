@@ -1,5 +1,34 @@
 # React StickerPipe
 
+## Usage
+
+Install from npm
+
+```
+$ npm i -S react-stickerpipe
+```
+
+Basic Usage
+
+```
+import StickerMenu from 'react-stickerpipe';
+
+function sendSticker(sticker) {
+  send.sticker(sticker);
+}
+
+function MyComponent() {
+  return (
+    <StickerMenu
+      apiKey={your.apiKey}
+      userId={your.userId}
+      sendSticker={sendSticker}
+    />
+  );
+}
+
+```
+
 ## Installation
 
 ### src
