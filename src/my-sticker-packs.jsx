@@ -14,7 +14,8 @@ class MyStickerPacks extends Component {
         xhdpi: PropTypes.string.isRequired,
         xxhdpi: PropTypes.string.isRequired
       }).isRequired
-    })).isRequired
+    })).isRequired,
+    getMyPacks: React.PropTypes.func.isRequired
   }
 
   static contextTypes = {
@@ -40,9 +41,9 @@ class MyStickerPacks extends Component {
   }
 
   componentDidMount() {
-    const { client } = this.context;
+    const { getMyPacks } = this.props;
 
-    client.getMyPacks((err, res) => {
+    getMyPacks((err, res) => {
       if (err) {
         console.log(err);
 
