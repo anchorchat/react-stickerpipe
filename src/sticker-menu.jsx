@@ -73,7 +73,7 @@ class StickerMenu extends Component {
 
 StickerMenu.propTypes = {
   apiKey: (props, propName) => {
-    if (!props.client && !props.propName) {
+    if (!props.client && !props[propName]) {
       return new Error(
         `Prop ${propName} is required when prop client is not specified!`
       );
