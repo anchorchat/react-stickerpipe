@@ -1,7 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import parseResponse from './parse-response';
 
 class StickerPackPreview extends Component {
+  static propTypes = {
+    preview: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      pack_name: PropTypes.string.isRequired,
+      preview: PropTypes.shape({
+        mdpi: PropTypes.string.isRequired,
+        hdpi: PropTypes.string.isRequired
+      })
+    }),
+    onPurchase: PropTypes.func.isRequired
+  }
+
+  static contextTypes = {
+    client: PropTypes.shape({
+      getMyPacks: PropTypes.func.isRequired,
+      purchasePack: PropTypes.func.isRequired
+    }).isRequired,
+    storage: PropTypes.shape({
+      storePack: PropTypes.func.isRequired,
+      getPack: PropTypes.func.isRequired
+    }).isRequired
+  }
+
   constructor() {
     super();
 
@@ -49,28 +72,5 @@ class StickerPackPreview extends Component {
     );
   }
 }
-
-StickerPackPreview.propTypes = {
-  preview: React.PropTypes.shape({
-    title: React.PropTypes.string.isRequired,
-    pack_name: React.PropTypes.string.isRequired,
-    preview: React.PropTypes.shape({
-      mdpi: React.PropTypes.string.isRequired,
-      hdpi: React.PropTypes.string.isRequired
-    })
-  }),
-  onPurchase: React.PropTypes.func.isRequired
-};
-
-StickerPackPreview.contextTypes = {
-  client: React.PropTypes.shape({
-    getMyPacks: React.PropTypes.func.isRequired,
-    purchasePack: React.PropTypes.func.isRequired
-  }).isRequired,
-  storage: React.PropTypes.shape({
-    storePack: React.PropTypes.func.isRequired,
-    getPack: React.PropTypes.func.isRequired
-  }).isRequired
-};
 
 export default StickerPackPreview;

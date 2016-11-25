@@ -1,7 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Sticker from './sticker';
 
 class StickerPack extends Component {
+  static propTypes = {
+    pack: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      stickers: PropTypes.arrayOf(
+        PropTypes.shape({
+          content_id: PropTypes.number.isRequired,
+          image: PropTypes.shape({
+            mdpi: PropTypes.string.isRequired,
+            hdpi: PropTypes.string.isRequired,
+            xhdpi: PropTypes.string.isRequired,
+            xxhdpi: PropTypes.string.isRequired
+          }).isRequired
+        }).isRequired
+      ).isRequired
+    }).isRequired,
+    sendSticker: PropTypes.func.isRequired
+  }
+
   constructor() {
     super();
 
@@ -31,23 +49,5 @@ class StickerPack extends Component {
     );
   }
 }
-
-StickerPack.propTypes = {
-  pack: React.PropTypes.shape({
-    title: React.PropTypes.string.isRequired,
-    stickers: React.PropTypes.arrayOf(
-      React.PropTypes.shape({
-        content_id: React.PropTypes.number.isRequired,
-        image: React.PropTypes.shape({
-          mdpi: React.PropTypes.string.isRequired,
-          hdpi: React.PropTypes.string.isRequired,
-          xhdpi: React.PropTypes.string.isRequired,
-          xxhdpi: React.PropTypes.string.isRequired
-        }).isRequired
-      }).isRequired
-    ).isRequired
-  }).isRequired,
-  sendSticker: React.PropTypes.func.isRequired
-};
 
 export default StickerPack;

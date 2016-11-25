@@ -1,9 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Sticker from './sticker';
 import StickerPackPreview from './sticker-pack-preview';
 import parseResponse from './parse-response';
 
 class StickerShop extends Component {
+  static propTypes = {
+    getMyPacks: PropTypes.func.isRequired
+  }
+
+  static contextTypes = {
+    client: PropTypes.shape({
+      getMyPacks: PropTypes.func.isRequired,
+      purchasePack: PropTypes.func.isRequired
+    }).isRequired
+  }
+
   constructor() {
     super();
 
@@ -95,16 +106,5 @@ class StickerShop extends Component {
     );
   }
 }
-
-StickerShop.propTypes = {
-  getMyPacks: React.PropTypes.func.isRequired
-};
-
-StickerShop.contextTypes = {
-  client: React.PropTypes.shape({
-    getMyPacks: React.PropTypes.func.isRequired,
-    purchasePack: React.PropTypes.func.isRequired
-  }).isRequired
-};
 
 export default StickerShop;
