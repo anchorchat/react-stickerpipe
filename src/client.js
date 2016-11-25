@@ -10,8 +10,7 @@ function performRequest(method, url, callback) {
     }
   };
 
-  request
-    [method](options.url)
+  request[method](options.url)
     .set(options.headers)
     .end(callback);
 }
