@@ -1,72 +1,40 @@
 import request from 'superagent';
 
+function performRequest(method, url, callback) {
+  const options = {
+    url,
+    headers: {
+      ApiKey: this.key,
+      Platform: 'JS',
+      UserId: this.userId
+    }
+  };
+
+  request
+    [method](options.url)
+    .set(options.headers)
+    .end(callback);
+}
+
 class StickerPipeClient {
   constructor(key, userId, baseUrl) {
     Object.assign(this, { key, userId, baseUrl });
   }
 
   getMyPacks(callback) {
-    const options = {
-      url: `${this.baseUrl}/shop/my`,
-      headers: {
-        ApiKey: this.key,
-        Platform: 'JS',
-        UserId: this.userId
-      }
-    };
-
-    request
-      .get(options.url)
-      .set(options.headers)
-      .end(callback);
+    performRequest('get', `${this.baseUrl}/shop/my`, callback);
   }
 
   getShop(callback) {
-    const options = {
-      url: `${this.baseUrl}/shop`,
-      headers: {
-        ApiKey: this.key,
-        Platform: 'JS',
-        UserId: this.userId
-      }
-    };
-
-    request
-      .get(options.url)
-      .set(options.headers)
-      .end(callback);
+    performRequest('get', `${this.baseUrl}/shop`, callback);
   }
 
   getPackPreview(packName, callback) {
-    const options = {
-      url: `${this.baseUrl}/packs/${packName}`,
-      headers: {
-        ApiKey: this.key,
-        Platform: 'JS',
-        UserId: this.userId
-      }
-    };
-
-    request
-      .get(options.url)
-      .set(options.headers)
-      .end(callback);
+    performRequest('get', `${this.baseUrl}/packs/${packName}`, callback);
   }
 
   purchasePack(packName, callback) {
-    const options = {
-      url: `${this.baseUrl}/packs/${packName}`,
-      headers: {
-        ApiKey: this.key,
-        Platform: 'JS',
-        UserId: this.userId
-      }
-    };
-
-    request
-      .post(options.url)
-      .set(options.headers)
-      .end(callback);
+    performRequest('post', `${this.baseUrl}/packs/${packName}`, callback);
   }
 }
 
