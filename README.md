@@ -7,7 +7,7 @@ Currently in development.
 
 Install from npm
 
-[![NPM](https://nodei.co/npm/react-stickerpipe.png)](https://nodei.co/npm/react-stickerpipe/)
+[![NPM](https://nodei.co/npm/react-stickerpipe.png?compact=true)](https://nodei.co/npm/react-stickerpipe/)
 
 Basic Usage
 
