@@ -12,7 +12,17 @@ class StickerMenu extends Component {
       stickerPacks: []
     };
 
-    this.client = new StickerPipeClient(props.apiKey, props.userId, 'https://api.stickerpipe.com/api/v2');
+    let client;
+
+    if (props && props.client) {
+      client = props.client;
+    }
+
+    if (props && !props.client && props.apiKey) {
+      client = new StickerPipeClient(props.apiKey, props.userId, 'https://api.stickerpipe.com/api/v2');
+    }
+
+    this.client = client;
     this.storage = new Storage(props.userId);
 
     this.getMyPacks = this.getMyPacks.bind(this);
@@ -62,9 +72,23 @@ class StickerMenu extends Component {
 }
 
 StickerMenu.propTypes = {
-  apiKey: React.PropTypes.string.isRequired,
+  apiKey: (props, propName) => {
+    if (!props.client && !props.propName) {
+      return new Error(
+        `Prop ${propName} is required when prop client is not specified!`
+      );
+    }
+
+    return null;
+  },
   userId: React.PropTypes.string.isRequired,
-  sendSticker: React.PropTypes.func.isRequired
+  sendSticker: React.PropTypes.func.isRequired,
+  client: React.PropTypes.shape({
+    getMyPacks: React.PropTypes.func.isRequired,
+    getShop: React.PropTypes.func.isRequired,
+    getPackPreview: React.PropTypes.func.isRequired,
+    purchasePack: React.PropTypes.func.isRequired
+  })
 };
 
 StickerMenu.childContextTypes = {
