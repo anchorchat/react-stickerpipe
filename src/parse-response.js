@@ -1,22 +1,26 @@
 function parseResponse(response) {
-  if (response && response.data && (typeof response.data === 'object')) {
-    return response.data;
+  let text;
+
+  if (response && response.content && (typeof response.content === 'string')) {
+    text = response.content;
   }
 
   if (response && response.text && (typeof response.text === 'string')) {
-    try {
-      const parsedResponse = JSON.parse(response.text);
+    text = response.text;
+  }
 
-      if (
-        parsedResponse
-        && parsedResponse.data
-        && (parsedResponse.data instanceof Object === true)
-      ) {
-        return parsedResponse.data;
-      }
-    } catch (err) {
-      console.warn('Error while parsing JSON', err);
+  try {
+    const parsedResponse = JSON.parse(text);
+
+    if (
+      parsedResponse
+      && parsedResponse.data
+      && (parsedResponse.data instanceof Object === true)
+    ) {
+      return parsedResponse.data;
     }
+  } catch (err) {
+    console.warn('Error while parsing JSON', err);
   }
 
   return {};
