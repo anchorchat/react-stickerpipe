@@ -37,22 +37,6 @@ class StickerPipeClient {
       .end(callback);
   }
 
-  getSticker(stickerId, callback) {
-    const options = {
-      url: `${this.baseUrl}/content/${stickerId}`,
-      headers: {
-        ApiKey: this.key,
-        Platform: 'JS',
-        UserId: this.userId
-      }
-    };
-
-    request
-      .get(options.url)
-      .set(options.headers)
-      .end(callback);
-  }
-
   getPackPreview(packName, callback) {
     const options = {
       url: `${this.baseUrl}/packs/${packName}`,
