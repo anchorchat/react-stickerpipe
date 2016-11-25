@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './app.css';
-import StickerMenu from '../../lib/index';
+import StickerMenu from 'react-stickerpipe';
 import settings from './settings.json';
 import StickerPipeClient from './client';
 
