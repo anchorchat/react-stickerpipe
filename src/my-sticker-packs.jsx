@@ -101,7 +101,7 @@ class MyStickerPacks extends Component {
       <section className="my-packs">
         <h1>My Packs</h1>
         {
-          !stickerPacks.length > 0
+          stickerPacks.length > 0
           ? stickerPacks.map(stickerPack => (
             <Sticker
               key={stickerPack.pack_name}
