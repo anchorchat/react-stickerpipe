@@ -59,10 +59,10 @@ class StickerShop extends Component {
         return false;
       }
 
-      const response = JSON.parse(res.text);
+      const preview = parseResponse(res);
 
       this.setState({
-        preview: response.data
+        preview
       });
 
       return false;

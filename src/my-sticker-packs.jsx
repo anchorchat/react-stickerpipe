@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import StickerPack from './sticker-pack';
 import Sticker from './sticker';
+import parseResponse from './parse-response';
 
 class MyStickerPacks extends Component {
   constructor() {
@@ -24,8 +25,7 @@ class MyStickerPacks extends Component {
         return false;
       }
 
-      const response = JSON.parse(res.text);
-      const stickerPacks = response.data;
+      const stickerPacks = parseResponse(res);
 
       this.setState({
         stickerPacks
@@ -55,8 +55,7 @@ class MyStickerPacks extends Component {
         return false;
       }
 
-      const response = JSON.parse(res.text);
-      const pack = response.data;
+      const pack = parseResponse(res);
 
       storage.storePack(pack.pack_name, pack.title, pack.stickers);
 
