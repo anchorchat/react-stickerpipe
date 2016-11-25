@@ -3,9 +3,12 @@
   "version": "1.2.4",
   "description": "React Component for StickerPipe API",
   "main": "lib/index.js",
+  "files": [
+    "dist/*"
+  ],
   "scripts": {
-    "watch": "babel -d lib/ -w src/",
-    "compile": "babel -d lib/ src/",
+    "watch": "babel -d dist/ -w src/",
+    "compile": "babel -d dist/ src/",
     "prepublish": "npm run compile"
   },
   "repository": {
