@@ -50,9 +50,6 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.7.1"
   },
-  "peerDependencies": {
-    "react": ">=0.13"
-  },
   "babel": {
     "presets": [
       "react",
@@ -64,6 +61,7 @@
     ]
   },
   "dependencies": {
+    "react": "^15.4.1",
     "superagent": "^3.0.0"
   }
 }
