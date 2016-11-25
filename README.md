@@ -24,7 +24,6 @@ function MyComponent() {
     />
   );
 }
-
 ```
 
 You can also pass your own API client as `client` to `<StickerMenu />`. The client must contain the following methods:
