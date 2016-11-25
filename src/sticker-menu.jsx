@@ -95,7 +95,11 @@ class StickerMenu extends Component {
 
     return (
       <section className="sticker-menu">
-        <MyStickerPacks sendSticker={sendSticker} stickerPacks={stickerPacks} />
+        <MyStickerPacks
+          sendSticker={sendSticker}
+          stickerPacks={stickerPacks}
+          getMyPacks={this.getMyPacks}
+        />
         <StickerShop getMyPacks={this.getMyPacks} />
       </section>
     );
@@ -120,17 +124,6 @@ StickerMenu.propTypes = {
     getPackPreview: React.PropTypes.func.isRequired,
     purchasePack: React.PropTypes.func.isRequired
   })
-};
-
-StickerMenu.childContextTypes = {
-  client: React.PropTypes.shape({
-    getMyPacks: React.PropTypes.func.isRequired,
-    purchasePack: React.PropTypes.func.isRequired
-  }).isRequired,
-  storage: React.PropTypes.shape({
-    storePack: React.PropTypes.func.isRequired,
-    getPack: React.PropTypes.func.isRequired
-  }).isRequired
 };
 
 export default StickerMenu;
