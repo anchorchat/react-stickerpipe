@@ -1,5 +1,8 @@
 # React StickerPipe
 
+Component for the [StickerPipe](http://stickerpipe.com/) API.
+Currently in development.
+
 ## Usage
 
 Install from npm
