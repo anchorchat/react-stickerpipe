@@ -4,9 +4,7 @@
 
 Install from npm
 
-```
-$ npm i -S react-stickerpipe
-```
+[![NPM](https://nodei.co/npm/react-stickerpipe.png)](https://nodei.co/npm/react-stickerpipe/)
 
 Basic Usage
 
