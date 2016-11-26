@@ -1,9 +1,34 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import StickerPack from './sticker-pack';
 import Sticker from './sticker';
 import parseResponse from './parse-response';
 
 class MyStickerPacks extends Component {
+  static propTypes = {
+    sendSticker: PropTypes.func.isRequired,
+    stickerPacks: PropTypes.arrayOf(PropTypes.shape({
+      pack_name: PropTypes.string.isRequired,
+      main_icon: PropTypes.shape({
+        mdpi: PropTypes.string.isRequired,
+        hdpi: PropTypes.string.isRequired,
+        xhdpi: PropTypes.string.isRequired,
+        xxhdpi: PropTypes.string.isRequired
+      }).isRequired
+    })).isRequired,
+    getMyPacks: React.PropTypes.func.isRequired
+  }
+
+  static contextTypes = {
+    client: PropTypes.shape({
+      getMyPacks: PropTypes.func.isRequired,
+      purchasePack: PropTypes.func.isRequired
+    }).isRequired,
+    storage: PropTypes.shape({
+      storePack: PropTypes.func.isRequired,
+      getPack: PropTypes.func.isRequired
+    }).isRequired
+  }
+
   constructor() {
     super();
 
@@ -15,10 +40,10 @@ class MyStickerPacks extends Component {
     this.showPack = this.showPack.bind(this);
   }
 
-  componentWillMount() {
-    const { client } = this.context;
+  componentDidMount() {
+    const { getMyPacks } = this.props;
 
-    client.getMyPacks((err, res) => {
+    getMyPacks((err, res) => {
       if (err) {
         console.log(err);
 
@@ -77,7 +102,7 @@ class MyStickerPacks extends Component {
       <section className="my-packs">
         <h1>My Packs</h1>
         {
-          !stickerPacks.lenght > 0
+          stickerPacks.length > 0
           ? stickerPacks.map(stickerPack => (
             <Sticker
               key={stickerPack.pack_name}
@@ -92,29 +117,5 @@ class MyStickerPacks extends Component {
     );
   }
 }
-
-MyStickerPacks.propTypes = {
-  sendSticker: React.PropTypes.func.isRequired,
-  stickerPacks: React.PropTypes.arrayOf(React.PropTypes.shape({
-    pack_name: React.PropTypes.string.isRequired,
-    main_icon: React.PropTypes.shape({
-      mdpi: React.PropTypes.string.isRequired,
-      hdpi: React.PropTypes.string.isRequired,
-      xhdpi: React.PropTypes.string.isRequired,
-      xxhdpi: React.PropTypes.string.isRequired
-    }).isRequired
-  })).isRequired
-};
-
-MyStickerPacks.contextTypes = {
-  client: React.PropTypes.shape({
-    getMyPacks: React.PropTypes.func.isRequired,
-    purchasePack: React.PropTypes.func.isRequired
-  }).isRequired,
-  storage: React.PropTypes.shape({
-    storePack: React.PropTypes.func.isRequired,
-    getPack: React.PropTypes.func.isRequired
-  }).isRequired
-};
 
 export default MyStickerPacks;

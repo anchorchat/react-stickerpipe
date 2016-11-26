@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import StickerPipeClient from './client';
 import Storage from './storage';
 import MyStickerPacks from './my-sticker-packs';
@@ -6,6 +6,37 @@ import StickerShop from './sticker-shop';
 import parseResponse from './parse-response';
 
 class StickerMenu extends Component {
+  static propTypes = {
+    apiKey: (props, propName) => {
+      if (!props.client && !props[propName]) {
+        return new Error(
+          `Prop ${propName} is required when prop client is not specified!`
+        );
+      }
+
+      return null;
+    },
+    userId: PropTypes.string.isRequired,
+    sendSticker: PropTypes.func.isRequired,
+    client: PropTypes.shape({
+      getMyPacks: PropTypes.func.isRequired,
+      getShop: PropTypes.func.isRequired,
+      getPackPreview: PropTypes.func.isRequired,
+      purchasePack: PropTypes.func.isRequired
+    })
+  }
+
+  static childContextTypes = {
+    client: PropTypes.shape({
+      getMyPacks: PropTypes.func.isRequired,
+      purchasePack: PropTypes.func.isRequired
+    }).isRequired,
+    storage: PropTypes.shape({
+      storePack: PropTypes.func.isRequired,
+      getPack: PropTypes.func.isRequired
+    }).isRequired
+  }
+
   constructor(props) {
     super(props);
 
@@ -64,7 +95,11 @@ class StickerMenu extends Component {
 
     return (
       <section className="sticker-menu">
-        <MyStickerPacks sendSticker={sendSticker} stickerPacks={stickerPacks} />
+        <MyStickerPacks
+          sendSticker={sendSticker}
+          stickerPacks={stickerPacks}
+          getMyPacks={this.getMyPacks}
+        />
         <StickerShop getMyPacks={this.getMyPacks} />
       </section>
     );
@@ -89,17 +124,6 @@ StickerMenu.propTypes = {
     getPackPreview: React.PropTypes.func.isRequired,
     purchasePack: React.PropTypes.func.isRequired
   })
-};
-
-StickerMenu.childContextTypes = {
-  client: React.PropTypes.shape({
-    getMyPacks: React.PropTypes.func.isRequired,
-    purchasePack: React.PropTypes.func.isRequired
-  }).isRequired,
-  storage: React.PropTypes.shape({
-    storePack: React.PropTypes.func.isRequired,
-    getPack: React.PropTypes.func.isRequired
-  }).isRequired
 };
 
 export default StickerMenu;
