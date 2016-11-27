@@ -2,9 +2,10 @@
   "extends": "airbnb",
   "parser": "babel-eslint",
   "rules": {
-    "comma-dangle": 0
+    "comma-dangle": 0,
+    "jsx-a11y/no-static-element-interactions": 0
   },
   "globals": {
-    "localStorage": 0  
+    "localStorage": 0
   }
 }
