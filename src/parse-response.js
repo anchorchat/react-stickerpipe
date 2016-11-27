@@ -9,6 +9,11 @@ function parseResponse(response) {
     text = response.text;
   }
 
+  if (!text) {
+    console.log('Did not supply any matching response format. Response is:', text);
+    return null;
+  }
+
   try {
     const parsedResponse = JSON.parse(text);
 
@@ -20,10 +25,10 @@ function parseResponse(response) {
       return parsedResponse.data;
     }
   } catch (err) {
-    throw new Error('Error while parsing JSON', err);
+    console.log('Error while parsing JSON', err);
   }
 
-  throw new Error('Error while parsing JSON');
+  return null;
 }
 
 export default parseResponse;

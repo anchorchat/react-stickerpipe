@@ -1,15 +1,25 @@
 const chai = require('chai');
+const sinon = require('sinon');
 const parseResponse = require('../dist/parse-response');
 
 describe('parseResponse', function() {
 
-  it('should throw error if called without arguments', function() {
-    chai.assert.throws(() => {
-      parseResponse()
-    }, Error, /Error while parsing JSON/);
+  before(function () {
+    sinon.stub(console, 'log');
   });
 
-  it('should throw error if response does not contain content or text', function() {
+  after(function () {
+    console.log.restore();
+  });
+
+  it('should return null if called without arguments', function() {
+    const response = parseResponse();
+
+    chai.assert(console.log.called, 'Did not call console.log');
+    chai.assert.equal(null , response, 'Did not return null');
+  });
+
+  it('should return null if response does not contain content or text', function() {
     const data = {
       data: {
         test: 'test'
@@ -20,12 +30,13 @@ describe('parseResponse', function() {
       data: JSON.stringify(data)
     };
 
-    chai.assert.throws(() => {
-      parseResponse()
-    }, Error, /Error while parsing JSON/);
+    const parsedResponse = parseResponse(response);
+
+    chai.assert(console.log.called, 'Did not call console.log');
+    chai.assert.equal(null , parsedResponse, 'Did not return null');
   });
 
-  it('should throw error if response.content does not contain data', function () {
+  it('should return null if response.content does not contain data', function () {
     const content = {
       test: {
         test: 'test'
@@ -36,12 +47,11 @@ describe('parseResponse', function() {
       content: JSON.stringify(content)
     };
 
-    chai.assert.throws(() => {
-      parseResponse()
-    }, Error, /Error while parsing JSON/);
+    chai.assert(console.log.called);
+    chai.assert.equal(null , parseResponse(response), 'Did not return null');
   });
 
-  it('should throw error if response.content.data instanceof Object === false', function () {
+  it('should return null if response.content.data instanceof Object === false', function () {
     const content = {
       test: 'test'
     };
@@ -50,9 +60,8 @@ describe('parseResponse', function() {
       content: JSON.stringify(content)
     };
 
-    chai.assert.throws(() => {
-      parseResponse()
-    }, Error, /Error while parsing JSON/);
+    chai.assert(console.log.called);
+    chai.assert.equal(null , parseResponse(response), 'Did not return null');
   });
 
   it('should parse and return response.content', function() {
@@ -69,7 +78,7 @@ describe('parseResponse', function() {
     chai.assert.deepEqual(content.data, parseResponse(response), 'Did not parse response.content');
   });
 
-  it('should throw error if response.text does not contain data', function () {
+  it('should return null if response.text does not contain data', function () {
     const text = {
       test: {
         test: 'test'
@@ -80,12 +89,11 @@ describe('parseResponse', function() {
       text: JSON.stringify(text)
     };
 
-    chai.assert.throws(() => {
-      parseResponse()
-    }, Error, /Error while parsing JSON/);
+    chai.assert(console.log.called);
+    chai.assert.equal(null , parseResponse(response), 'Did not return null');
   });
 
-  it('should throw error if response.text.data instanceof Object === false', function () {
+  it('should return null if response.text.data instanceof Object === false', function () {
     const text = {
       test: 'test'
     };
@@ -94,9 +102,8 @@ describe('parseResponse', function() {
       text: JSON.stringify(text)
     };
 
-    chai.assert.throws(() => {
-      parseResponse()
-    }, Error, /Error while parsing JSON/);
+    chai.assert(console.log.called);
+    chai.assert.equal(null , parseResponse(response), 'Did not return null');
   });
 
   it('should parse and return response.text', function() {
