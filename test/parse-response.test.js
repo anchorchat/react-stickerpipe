@@ -5,17 +5,17 @@ const parseResponse = require('../dist/parse-response');
 describe('parseResponse', function() {
 
   before(function () {
-    sinon.stub(console, 'log');
+    sinon.stub(console, 'warn');
   });
 
   after(function () {
-    console.log.restore();
+    console.warn.restore();
   });
 
   it('should return null if called without arguments', function() {
     const response = parseResponse();
 
-    chai.assert(console.log.called, 'Did not call console.log');
+    chai.assert(console.warn.called, 'Did not call console.warn');
     chai.assert.equal(null , response, 'Did not return null');
   });
 
@@ -32,7 +32,7 @@ describe('parseResponse', function() {
 
     const parsedResponse = parseResponse(response);
 
-    chai.assert(console.log.called, 'Did not call console.log');
+    chai.assert(console.warn.called, 'Did not call console.warn');
     chai.assert.equal(null , parsedResponse, 'Did not return null');
   });
 
@@ -47,7 +47,7 @@ describe('parseResponse', function() {
       content: JSON.stringify(content)
     };
 
-    chai.assert(console.log.called);
+    chai.assert(console.warn.called);
     chai.assert.equal(null , parseResponse(response), 'Did not return null');
   });
 
@@ -60,7 +60,7 @@ describe('parseResponse', function() {
       content: JSON.stringify(content)
     };
 
-    chai.assert(console.log.called);
+    chai.assert(console.warn.called);
     chai.assert.equal(null , parseResponse(response), 'Did not return null');
   });
 
@@ -89,7 +89,7 @@ describe('parseResponse', function() {
       text: JSON.stringify(text)
     };
 
-    chai.assert(console.log.called);
+    chai.assert(console.warn.called);
     chai.assert.equal(null , parseResponse(response), 'Did not return null');
   });
 
@@ -102,7 +102,7 @@ describe('parseResponse', function() {
       text: JSON.stringify(text)
     };
 
-    chai.assert(console.log.called);
+    chai.assert(console.warn.called);
     chai.assert.equal(null , parseResponse(response), 'Did not return null');
   });
 

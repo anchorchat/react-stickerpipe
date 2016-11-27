@@ -10,7 +10,7 @@ function parseResponse(response) {
   }
 
   if (!text) {
-    console.log('Did not supply any matching response format. Response is:', text);
+    console.warn('Did not supply any matching response format. Response is:', text);
     return null;
   }
 
@@ -25,7 +25,7 @@ function parseResponse(response) {
       return parsedResponse.data;
     }
   } catch (err) {
-    console.log('Error while parsing JSON', err);
+    console.warn('Error while parsing JSON', err);
   }
 
   return null;
