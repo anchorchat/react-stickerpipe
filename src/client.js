@@ -4,7 +4,7 @@ function performRequest(method, url, callback) {
   const options = {
     url,
     headers: {
-      ApiKey: this.key,
+      ApiKey: this.apiKey,
       Platform: 'JS',
       UserId: this.userId
     }
@@ -16,8 +16,8 @@ function performRequest(method, url, callback) {
 }
 
 class StickerPipeClient {
-  constructor(key, userId, baseUrl) {
-    Object.assign(this, { key, userId, baseUrl });
+  constructor(apiKey, userId, baseUrl) {
+    Object.assign(this, { apiKey, userId, baseUrl });
   }
 
   getMyPacks(callback) {
