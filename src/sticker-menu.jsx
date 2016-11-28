@@ -109,7 +109,7 @@ class StickerMenu extends Component {
           stickerPacks={stickerPacks}
           getMyPacks={this.getMyPacks}
         />
-        <div onClick={this.toggleShop}>
+        <div onClick={this.toggleShop} className="button-shop">
           <IconAdd color={shop ? '#00BCD4' : null} />
         </div>
         {shop ? <StickerShop getMyPacks={this.getMyPacks} /> : null}
