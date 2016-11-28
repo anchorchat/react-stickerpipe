@@ -1,18 +1,10 @@
 import React from 'react';
 
 function Sticker({ src, onClick }) {
-  const style = {
-    sticker: {
-      width: '50px',
-      cursor: 'pointer'
-    }
-  };
-
   return (
     <img
       className="sticker"
       onClick={onClick}
-      style={style.sticker}
       src={src}
       role="presentation"
     />
