@@ -100,17 +100,19 @@ class MyStickerPacks extends Component {
 
     return (
       <section className="my-packs">
-        {
-          stickerPacks.length > 0
-          ? stickerPacks.map(stickerPack => (
-            <Sticker
-              key={stickerPack.pack_name}
-              src={stickerPack.main_icon.mdpi}
-              onClick={() => this.showPack(stickerPack.pack_name)}
-            />
-          ))
-          : <p>Loading...</p>
-        }
+        <section className="pack-list">
+          {
+            stickerPacks.length > 0
+            ? stickerPacks.map(stickerPack => (
+              <Sticker
+                key={stickerPack.pack_name}
+                src={stickerPack.main_icon.mdpi}
+                onClick={() => this.showPack(stickerPack.pack_name)}
+              />
+            ))
+            : <p>Loading...</p>
+          }
+        </section>
         {pack ? <StickerPack pack={pack} sendSticker={sendSticker} /> : null}
       </section>
     );
