@@ -6,14 +6,19 @@ describe('StickerPipeClient', function () {
 
   describe('getMyPacks', function () {
 
+    before(function () {
+      client = new StickerPipeClient('mochaKey', 'mocha', 'mochaUrl');
+    });
+
     it('should call performRequest', function () {
-      const client = new StickerPipeClient('mochaKey', 'mocha', 'mochaUrl');
       const callback = () => {};
       sinon.stub(client, 'performRequest');
 
       client.getMyPacks(callback);
 
       chai.assert(client.performRequest.withArgs('get', 'mochaUrl/shop/my', callback).called, 'Did not call performRequest');
+
+      client.performRequest.restore();
     });
 
   });
