@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import StickerPack from './sticker-pack';
 import Sticker from './sticker';
 import parseResponse from './parse-response';
+import IconAdd from './icon-add';
 
 class MyStickerPacks extends Component {
   static propTypes = {
@@ -15,7 +16,9 @@ class MyStickerPacks extends Component {
         xxhdpi: PropTypes.string.isRequired
       }).isRequired
     })).isRequired,
-    getMyPacks: React.PropTypes.func.isRequired
+    getMyPacks: React.PropTypes.func.isRequired,
+    toggleShop: React.PropTypes.func.isRequired,
+    shop: React.PropTypes.bool.isRequired
   }
 
   static contextTypes = {
@@ -96,22 +99,26 @@ class MyStickerPacks extends Component {
 
   render() {
     const { pack } = this.state;
-    const { sendSticker, stickerPacks } = this.props;
+    const { sendSticker, stickerPacks, shop, toggleShop } = this.props;
 
     return (
       <section className="my-packs">
-        <h1>My Packs</h1>
-        {
-          stickerPacks.length > 0
-          ? stickerPacks.map(stickerPack => (
-            <Sticker
-              key={stickerPack.pack_name}
-              src={stickerPack.main_icon.mdpi}
-              onClick={() => this.showPack(stickerPack.pack_name)}
-            />
-          ))
-          : <p>Loading...</p>
-        }
+        <section className="pack-list">
+          {
+            stickerPacks.length > 0
+            ? stickerPacks.map(stickerPack => (
+              <Sticker
+                key={stickerPack.pack_name}
+                src={stickerPack.main_icon.mdpi}
+                onClick={() => this.showPack(stickerPack.pack_name)}
+              />
+            ))
+            : <p>Loading...</p>
+          }
+          <div onClick={toggleShop} className="button-shop">
+            <IconAdd color={shop ? '#00BCD4' : null} />
+          </div>
+        </section>
         {pack ? <StickerPack pack={pack} sendSticker={sendSticker} /> : null}
       </section>
     );

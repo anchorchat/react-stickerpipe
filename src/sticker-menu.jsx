@@ -41,7 +41,8 @@ class StickerMenu extends Component {
     super(props);
 
     this.state = {
-      stickerPacks: []
+      stickerPacks: [],
+      shop: false
     };
 
     let client;
@@ -58,6 +59,7 @@ class StickerMenu extends Component {
     this.storage = new Storage(props.userId);
 
     this.getMyPacks = this.getMyPacks.bind(this);
+    this.toggleShop = this.toggleShop.bind(this);
   }
 
   getChildContext() {
@@ -89,9 +91,15 @@ class StickerMenu extends Component {
     });
   }
 
+  toggleShop() {
+    this.setState({
+      shop: !this.state.shop
+    });
+  }
+
   render() {
     const { sendSticker } = this.props;
-    const { stickerPacks } = this.state;
+    const { stickerPacks, shop } = this.state;
 
     return (
       <section className="sticker-menu">
@@ -99,31 +107,13 @@ class StickerMenu extends Component {
           sendSticker={sendSticker}
           stickerPacks={stickerPacks}
           getMyPacks={this.getMyPacks}
+          toggleShop={this.toggleShop}
+          shop={shop}
         />
-        <StickerShop getMyPacks={this.getMyPacks} />
+        {shop ? <StickerShop getMyPacks={this.getMyPacks} /> : null}
       </section>
     );
   }
 }
-
-StickerMenu.propTypes = {
-  apiKey: (props, propName) => {
-    if (!props.client && !props[propName]) {
-      return new Error(
-        `Prop ${propName} is required when prop client is not specified!`
-      );
-    }
-
-    return null;
-  },
-  userId: React.PropTypes.string.isRequired,
-  sendSticker: React.PropTypes.func.isRequired,
-  client: React.PropTypes.shape({
-    getMyPacks: React.PropTypes.func.isRequired,
-    getShop: React.PropTypes.func.isRequired,
-    getPackPreview: React.PropTypes.func.isRequired,
-    purchasePack: React.PropTypes.func.isRequired
-  })
-};
 
 export default StickerMenu;
