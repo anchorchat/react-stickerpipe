@@ -29,3 +29,58 @@
 .button-purchase {
   cursor: pointer;
 }
+
+.sticker-menu {
+  background-color: #F9F7F7;
+  border-radius: 5px;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
+}
+
+.pack-list {
+  background-color: #FFFFFF;
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
+  position: relative;
+}
+
+.pack-list img {
+  width: 24px;
+  padding: 12px;
+}
+
+.pack-list .button-shop,
+.sticker-pack-preview .button-purchase {
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.sticker-pack,
+.sticker-shop {
+  padding: 10px;
+}
+
+.sticker-pack h1,
+.sticker-shop h1 {
+  margin: 0 0 1rem;
+}
+
+.sticker-pack-preview {
+  padding: 10px;
+  background-color: #F9F7F7;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.1);
+}
+
+.sticker-pack-preview .button-purchase {
+  top: 0;
+  right: 0;
+}
