@@ -4,7 +4,6 @@ import Storage from './storage';
 import MyStickerPacks from './my-sticker-packs';
 import StickerShop from './sticker-shop';
 import parseResponse from './parse-response';
-import IconAdd from './icon-add';
 
 class StickerMenu extends Component {
   static propTypes = {
@@ -108,10 +107,9 @@ class StickerMenu extends Component {
           sendSticker={sendSticker}
           stickerPacks={stickerPacks}
           getMyPacks={this.getMyPacks}
+          toggleShop={this.toggleShop}
+          shop={shop}
         />
-        <div onClick={this.toggleShop} className="button-shop">
-          <IconAdd color={shop ? '#00BCD4' : null} />
-        </div>
         {shop ? <StickerShop getMyPacks={this.getMyPacks} /> : null}
       </section>
     );
