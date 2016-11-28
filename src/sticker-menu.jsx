@@ -4,6 +4,7 @@ import Storage from './storage';
 import MyStickerPacks from './my-sticker-packs';
 import StickerShop from './sticker-shop';
 import parseResponse from './parse-response';
+import IconAdd from './icon-add';
 
 class StickerMenu extends Component {
   static propTypes = {
@@ -41,7 +42,8 @@ class StickerMenu extends Component {
     super(props);
 
     this.state = {
-      stickerPacks: []
+      stickerPacks: [],
+      shop: false
     };
 
     let client;
@@ -58,6 +60,7 @@ class StickerMenu extends Component {
     this.storage = new Storage(props.userId);
 
     this.getMyPacks = this.getMyPacks.bind(this);
+    this.toggleShop = this.toggleShop.bind(this);
   }
 
   getChildContext() {
@@ -89,9 +92,15 @@ class StickerMenu extends Component {
     });
   }
 
+  toggleShop() {
+    this.setState({
+      shop: !this.state.shop
+    });
+  }
+
   render() {
     const { sendSticker } = this.props;
-    const { stickerPacks } = this.state;
+    const { stickerPacks, shop } = this.state;
 
     return (
       <section className="sticker-menu">
@@ -100,7 +109,10 @@ class StickerMenu extends Component {
           stickerPacks={stickerPacks}
           getMyPacks={this.getMyPacks}
         />
-        <StickerShop getMyPacks={this.getMyPacks} />
+        <div onClick={this.toggleShop}>
+          <IconAdd color={shop ? '#00BCD4' : null} />
+        </div>
+        {shop ? <StickerShop getMyPacks={this.getMyPacks} /> : null}
       </section>
     );
   }
