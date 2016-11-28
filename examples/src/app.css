@@ -19,3 +19,13 @@
 .demo > h1:hover a {
   text-decoration: underline;
 }
+
+.sticker {
+  width: 50px;
+  cursor: pointer;
+}
+
+.button-shop,
+.button-purchase {
+  cursor: pointer;
+}
