@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import parseResponse from './parse-response';
+import IconPurchase from './icon-purchase';
 
 class StickerPackPreview extends Component {
   static propTypes = {
@@ -62,12 +63,9 @@ class StickerPackPreview extends Component {
 
     return (
       <section className="sticker-pack-preview">
-        <h1>Preview</h1>
-        <section>
-          <h1>{preview.title}</h1>
-          <img style={style.preview} src={preview.preview.hdpi} alt={preview.title} />
-          <button onClick={this.purchasePack}>Purchase</button>
-        </section>
+        <h1>{preview.title}</h1>
+        <img style={style.preview} src={preview.preview_landscape.hdpi} alt={preview.title} />
+        <div onClick={this.purchasePack} className="button-purchase"><IconPurchase /></div>
       </section>
     );
   }
