@@ -104,17 +104,21 @@ class MyStickerPacks extends Component {
     return (
       <section className="my-packs">
         <section className="pack-list">
-          {
-            stickerPacks.length > 0
-            ? stickerPacks.map(stickerPack => (
-              <Sticker
-                key={stickerPack.pack_name}
-                src={stickerPack.main_icon.mdpi}
-                onClick={() => this.showPack(stickerPack.pack_name)}
-              />
-            ))
-            : <p>Loading...</p>
-          }
+          <div className="stickers-tab">
+            <div className="stickers" style={{ minWidth: `calc((${stickerPacks.length} * 48px)` }}>
+              {
+                stickerPacks.length > 0
+                ? stickerPacks.map(stickerPack => (
+                  <Sticker
+                    key={stickerPack.pack_name}
+                    src={stickerPack.main_icon.mdpi}
+                    onClick={() => this.showPack(stickerPack.pack_name)}
+                  />
+                ))
+                : <p>Loading...</p>
+              }
+            </div>
+          </div>
           <div onClick={toggleShop} className="button-shop">
             <IconAdd color={shop ? '#00BCD4' : null} />
           </div>
