@@ -98,7 +98,7 @@ To start the webpack server run:
 $ cd examples && npm run start
 ```
 
-Webpack wil compile on changes in both `./src` and `./examples/src`.
+Webpack wil compile on changes in `./examples/src`.
 
 ## Contributing
 
