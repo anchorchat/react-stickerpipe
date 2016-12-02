@@ -38,13 +38,15 @@ class StickerPack extends Component {
     return (
       <section className="sticker-pack">
         <h1>{pack.title}</h1>
-        {pack.stickers.map(sticker => (
-          <Sticker
-            key={sticker.content_id}
-            src={sticker.image.mdpi}
-            onClick={() => this.sendSticker(sticker)}
-          />
-        ))}
+        <section className="stickers">
+          {pack.stickers.map(sticker => (
+            <Sticker
+              key={sticker.content_id}
+              src={sticker.image.mdpi}
+              onClick={() => this.sendSticker(sticker)}
+            />
+          ))}
+        </section>
       </section>
     );
   }
