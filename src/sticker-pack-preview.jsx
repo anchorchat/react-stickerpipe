@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import parseResponse from './parse-response';
 import IconPurchase from './icon-purchase';
+import IconClose from './icon-close';
 
 class StickerPackPreview extends Component {
   static propTypes = {
@@ -12,7 +13,8 @@ class StickerPackPreview extends Component {
         hdpi: PropTypes.string.isRequired
       })
     }),
-    onPurchase: PropTypes.func.isRequired
+    onPurchase: PropTypes.func.isRequired,
+    closePreview: PropTypes.func.isRequired
   }
 
   static contextTypes = {
@@ -53,7 +55,7 @@ class StickerPackPreview extends Component {
   }
 
   render() {
-    const { preview } = this.props;
+    const { preview, closePreview } = this.props;
 
     const style = {
       preview: {
@@ -65,6 +67,7 @@ class StickerPackPreview extends Component {
       <section className="sticker-pack-preview">
         <h1>{preview.title}</h1>
         <img style={style.preview} src={preview.preview_landscape.hdpi} alt={preview.title} />
+        <div onClick={closePreview} className="button-close"><IconClose /></div>
         <div onClick={this.purchasePack} className="button-purchase"><IconPurchase /></div>
       </section>
     );

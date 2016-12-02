@@ -25,6 +25,7 @@ class StickerShop extends Component {
 
     this.previewPack = this.previewPack.bind(this);
     this.onPurchase = this.onPurchase.bind(this);
+    this.closePreview = this.closePreview.bind(this);
   }
 
   componentWillMount() {
@@ -80,6 +81,12 @@ class StickerShop extends Component {
     });
   }
 
+  closePreview() {
+    this.setState({
+      preview: null
+    });
+  }
+
   render() {
     const { preview, stickerPacks } = this.state;
 
@@ -101,7 +108,11 @@ class StickerShop extends Component {
         </section>
         {
           preview
-          ? <StickerPackPreview preview={preview} onPurchase={this.onPurchase} />
+          ? <StickerPackPreview
+            preview={preview}
+            onPurchase={this.onPurchase}
+            closePreview={this.closePreview}
+          />
           : null
         }
       </section>
