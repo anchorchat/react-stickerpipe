@@ -100,6 +100,20 @@ $ cd examples && npm run start
 
 Webpack wil compile on changes in both `./src` and `./examples/src`.
 
+## Contributing
+
+If you want to help with the development of this module and need to test your changes with the examples you can import `<StickerMenu />` directly from `./dist`. Be sure to run `npm run compile` first.
+
+```javascript
+'./examples/src/app.js'
+
+// Change this
+import StickerMenu from 'react-stickerpipe';
+
+// to this
+import StickerMenu from '../../dist/index';
+```
+
 ## License
 
 This project is licensed under the terms of the [MIT license](https://github.com/anchorchat/react-stickerpipe/blob/master/LICENSE).
