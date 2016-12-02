@@ -130,3 +130,12 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.sticker-pack-preview {
+  width: 80%;
+  max-width: 500px;
+}
+
+.sticker-pack-preview img {
+  width: 100%;
+}
