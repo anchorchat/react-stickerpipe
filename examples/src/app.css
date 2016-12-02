@@ -30,8 +30,10 @@
 }
 
 .button-shop,
-.button-purchase {
+.button-purchase,
+.button-close {
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 .sticker-menu {
@@ -89,6 +91,7 @@
 
 .sticker-pack-preview {
   padding: 12px;
+  padding-bottom: 48px;
   background-color: #F9F7F7;
   position: absolute;
   top: 50%;
@@ -102,6 +105,16 @@
   width: 48px;
   height: 48px;
   padding: 12px;
+  bottom: 0;
+  top: initial;
+}
+
+.sticker-pack-preview .button-close {
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+  position: absolute;
+  right: 0;
   top: 0;
 }
 
