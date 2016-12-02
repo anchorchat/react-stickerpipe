@@ -101,11 +101,17 @@ class MyStickerPacks extends Component {
     const { pack } = this.state;
     const { sendSticker, stickerPacks, shop, toggleShop } = this.props;
 
+    const style = {
+      stickers: {
+        minWidth: `calc((${stickerPacks.length} * 48px)`
+      }
+    };
+
     return (
       <section className="my-packs">
         <section className="pack-list">
           <div className="stickers-tab">
-            <div className="stickers" style={{ minWidth: `calc((${stickerPacks.length} * 48px)` }}>
+            <div className="stickers" style={style.stickers}>
               {
                 stickerPacks.length > 0
                 ? stickerPacks.map(stickerPack => (
