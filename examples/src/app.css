@@ -88,7 +88,7 @@
 }
 
 .sticker-pack-preview {
-  padding: 10px;
+  padding: 12px;
   background-color: #F9F7F7;
   position: absolute;
   top: 50%;
@@ -103,4 +103,17 @@
   height: 48px;
   padding: 12px;
   top: 0;
+}
+
+.sticker-pack .sticker,
+.sticker-shop .sticker {
+  margin: 5px;
+}
+
+.sticker-pack .stickers,
+.sticker-shop .stickers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
 }
