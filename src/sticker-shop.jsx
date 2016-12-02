@@ -25,6 +25,7 @@ class StickerShop extends Component {
 
     this.previewPack = this.previewPack.bind(this);
     this.onPurchase = this.onPurchase.bind(this);
+    this.closePreview = this.closePreview.bind(this);
   }
 
   componentWillMount() {
@@ -80,26 +81,38 @@ class StickerShop extends Component {
     });
   }
 
+  closePreview() {
+    this.setState({
+      preview: null
+    });
+  }
+
   render() {
     const { preview, stickerPacks } = this.state;
 
     return (
       <section className="sticker-shop">
         <h1>Sticker Shop</h1>
-        {
-          stickerPacks.length > 0
-          ? stickerPacks.map(stickerPack => (
-            <Sticker
-              key={stickerPack.pack_name}
-              onClick={() => this.previewPack(stickerPack.pack_name)}
-              src={stickerPack.main_icon.mdpi}
-            />
-          ))
-          : null
-        }
+        <section className="stickers">
+          {
+            stickerPacks.length > 0
+            ? stickerPacks.map(stickerPack => (
+              <Sticker
+                key={stickerPack.pack_name}
+                onClick={() => this.previewPack(stickerPack.pack_name)}
+                src={stickerPack.main_icon.mdpi}
+              />
+            ))
+            : null
+          }
+        </section>
         {
           preview
-          ? <StickerPackPreview preview={preview} onPurchase={this.onPurchase} />
+          ? <StickerPackPreview
+            preview={preview}
+            onPurchase={this.onPurchase}
+            closePreview={this.closePreview}
+          />
           : null
         }
       </section>
