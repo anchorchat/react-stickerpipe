@@ -73,7 +73,7 @@ class StickerMenu extends Component {
     this.getMyPacks();
   }
 
-  getMyPacks() {
+  getMyPacks(callback) {
     this.client.getMyPacks((err, res) => {
       if (err) {
         console.log(err);
@@ -86,6 +86,10 @@ class StickerMenu extends Component {
       this.setState({
         stickerPacks
       });
+
+      if (callback) {
+        callback(stickerPacks);
+      }
 
       return false;
     });

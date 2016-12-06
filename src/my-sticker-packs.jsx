@@ -44,22 +44,8 @@ class MyStickerPacks extends Component {
   }
 
   componentDidMount() {
-    const { getMyPacks } = this.props;
-
-    getMyPacks((err, res) => {
-      if (err) {
-        console.log(err);
-
-        return false;
-      }
-
-      const stickerPacks = parseResponse(res);
-
-      this.setState({
-        stickerPacks
-      });
-
-      return false;
+    this.props.getMyPacks((stickerPacks) => {
+      this.showPack(stickerPacks[0].pack_name);
     });
   }
 
