@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import parseResponse from './parse-response';
+import parseResponse from '../parse-response';
 import IconPurchase from './icon-purchase';
 import IconClose from './icon-close';
 

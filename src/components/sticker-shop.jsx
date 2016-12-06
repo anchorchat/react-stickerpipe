@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Sticker from './sticker';
 import StickerPackPreview from './sticker-pack-preview';
-import parseResponse from './parse-response';
+import parseResponse from '../parse-response';
 
 class StickerShop extends Component {
   static propTypes = {
