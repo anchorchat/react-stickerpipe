@@ -88,7 +88,7 @@ class StickerMenu extends Component {
       });
 
       if (callback) {
-        callback();
+        callback(stickerPacks);
       }
 
       return false;
