@@ -44,9 +44,11 @@ class MyStickerPacks extends Component {
   }
 
   componentDidMount() {
-    const { getMyPacks } = this.props;
-
-    getMyPacks();
+    this.props.getMyPacks(() => {
+      if (this.props.stickerPacks.length > 0) {
+        this.showPack(this.props.stickerPacks[0].pack_name);
+      }
+    });
   }
 
   showPack(packName) {
