@@ -84,6 +84,7 @@ class StickerMenu extends Component {
       const stickerPacks = parseResponse(res);
 
       this.setState({
+        ...this.state,
         stickerPacks
       });
 
@@ -97,6 +98,7 @@ class StickerMenu extends Component {
 
   toggleShop() {
     this.setState({
+      ...this.state,
       shop: !this.state.shop
     });
   }
