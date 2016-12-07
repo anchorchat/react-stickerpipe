@@ -56,7 +56,6 @@ class MyStickerPacks extends Component {
 
     if (storedPack) {
       this.setState({
-        ...this.state,
         pack: storedPack
       });
 
@@ -75,7 +74,6 @@ class MyStickerPacks extends Component {
       storage.storePack(pack.pack_name, pack.title, pack.stickers);
 
       this.setState({
-        ...this.state,
         pack
       });
 

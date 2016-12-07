@@ -41,7 +41,6 @@ class StickerShop extends Component {
       const stickerPacks = parseResponse(res);
 
       this.setState({
-        ...this.state,
         stickerPacks
       });
 
@@ -54,7 +53,6 @@ class StickerShop extends Component {
 
     getMyPacks();
     this.setState({
-      ...this.state,
       preview: null
     });
   }
@@ -63,7 +61,6 @@ class StickerShop extends Component {
     const { client } = this.context;
 
     this.setState({
-      ...this.state,
       loading: true
     });
 
@@ -77,7 +74,6 @@ class StickerShop extends Component {
       const preview = parseResponse(res);
 
       this.setState({
-        ...this.state,
         preview
       });
 
@@ -87,7 +83,6 @@ class StickerShop extends Component {
 
   closePreview() {
     this.setState({
-      ...this.state,
       preview: null
     });
   }
