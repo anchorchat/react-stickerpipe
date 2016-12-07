@@ -147,7 +147,6 @@ class StickerMenu extends Component {
     return (
       <section className="sticker-menu">
         <MyStickerPacks
-          sendSticker={sendSticker}
           stickerPacks={stickerPacks}
           showPack={this.showPack}
           toggleShop={this.toggleShop}
