@@ -69,7 +69,6 @@
     ]
   },
   "dependencies": {
-    "localforage": "^1.4.3",
     "react": "^15.4.1",
     "superagent": "^3.0.0"
   }
