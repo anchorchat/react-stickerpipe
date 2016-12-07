@@ -48,6 +48,14 @@ class StickerPackPreview extends Component {
       const pack = parseResponse(res);
 
       storage.storePack(pack.pack_name, pack.title, pack.stickers);
+
+      const storedPacks = storage.getMyPacks();
+      if (storedPacks.length > 0) {
+        storedPacks.unshift(pack);
+
+        storage.storeMyPacks(storedPacks);
+      }
+
       onPurchase();
 
       return false;
