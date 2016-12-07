@@ -105,7 +105,8 @@ class StickerMenu extends Component {
 
     if (storedPack) {
       this.setState({
-        pack: storedPack
+        pack: storedPack,
+        shop: false
       });
 
       return false;
@@ -123,7 +124,8 @@ class StickerMenu extends Component {
       storage.storePack(pack.pack_name, pack.title, pack.stickers);
 
       this.setState({
-        pack
+        pack,
+        shop: false
       });
 
       return false;
@@ -151,7 +153,11 @@ class StickerMenu extends Component {
           toggleShop={this.toggleShop}
           shop={shop}
         />
-        {pack && pack.stickers ? <StickerPack pack={pack} sendSticker={sendSticker} /> : null}
+        {
+          (pack && pack.stickers) && !shop
+          ? <StickerPack pack={pack} sendSticker={sendSticker} />
+          : null
+        }
         {shop ? <StickerShop getMyPacks={this.getMyPacks} /> : null}
       </section>
     );
