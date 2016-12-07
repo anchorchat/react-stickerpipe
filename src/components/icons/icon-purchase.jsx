@@ -1,11 +1,7 @@
 import React from 'react';
 
 function IconPurchase({ color }) {
-  let fill = '#757575';
-
-  if (color) {
-    fill = color;
-  }
+  const fill = color || '#757575';
 
   return (
     <svg width="24px" height="24px" viewBox="0 0 24 24">
