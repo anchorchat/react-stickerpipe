@@ -77,6 +77,20 @@ class StickerMenu extends Component {
   }
 
   getMyPacks(callback) {
+    const storedPacks = this.storage.getMyPacks();
+
+    if (storedPacks && storedPacks.length > 0) {
+      if (callback) {
+        callback(storedPacks[0].pack_name);
+      }
+
+      this.setState({
+        stickerPacks: storedPacks
+      });
+
+      return false;
+    }
+
     this.client.getMyPacks((err, res) => {
       if (err) {
         console.log(err);
@@ -90,12 +104,16 @@ class StickerMenu extends Component {
         callback(stickerPacks[0].pack_name);
       }
 
+      this.storage.storeMyPacks(stickerPacks);
+
       this.setState({
         stickerPacks
       });
 
       return false;
     });
+
+    return false;
   }
 
   showPack(packName) {
