@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import StickerPipeClient from './client';
 import Storage from './storage';
 import MyStickerPacks from './components/my-sticker-packs';
+import StickerPack from './components/sticker-pack';
 import StickerShop from './components/sticker-shop';
 import parseResponse from './parse-response';
 
@@ -42,6 +43,7 @@ class StickerMenu extends Component {
 
     this.state = {
       stickerPacks: [],
+      pack: {},
       shop: false
     };
 
@@ -59,6 +61,7 @@ class StickerMenu extends Component {
     this.storage = new Storage(props.userId);
 
     this.getMyPacks = this.getMyPacks.bind(this);
+    this.showPack = this.showPack.bind(this);
     this.toggleShop = this.toggleShop.bind(this);
   }
 
@@ -69,8 +72,8 @@ class StickerMenu extends Component {
     };
   }
 
-  componentWillMount() {
-    this.getMyPacks();
+  componentDidMount() {
+    this.getMyPacks(this.showPack);
   }
 
   getMyPacks(callback) {
@@ -83,39 +86,72 @@ class StickerMenu extends Component {
 
       const stickerPacks = parseResponse(res);
 
+      if (callback) {
+        callback(stickerPacks[0].pack_name);
+      }
+
       this.setState({
-        ...this.state,
         stickerPacks
       });
-
-      if (callback) {
-        callback(stickerPacks);
-      }
 
       return false;
     });
   }
 
+  showPack(packName) {
+    const { client, storage } = this;
+
+    const storedPack = storage.getPack(packName);
+
+    if (storedPack) {
+      this.setState({
+        pack: storedPack
+      });
+
+      return false;
+    }
+
+    client.purchasePack(packName, (err, res) => {
+      if (err) {
+        console.log(err);
+
+        return false;
+      }
+
+      const pack = parseResponse(res);
+
+      storage.storePack(pack.pack_name, pack.title, pack.stickers);
+
+      this.setState({
+        pack
+      });
+
+      return false;
+    });
+
+    return false;
+  }
+
   toggleShop() {
     this.setState({
-      ...this.state,
       shop: !this.state.shop
     });
   }
 
   render() {
     const { sendSticker } = this.props;
-    const { stickerPacks, shop } = this.state;
+    const { stickerPacks, pack, shop } = this.state;
 
     return (
       <section className="sticker-menu">
         <MyStickerPacks
           sendSticker={sendSticker}
           stickerPacks={stickerPacks}
-          getMyPacks={this.getMyPacks}
+          showPack={this.showPack}
           toggleShop={this.toggleShop}
           shop={shop}
         />
+        {pack && pack.stickers ? <StickerPack pack={pack} sendSticker={sendSticker} /> : null}
         {shop ? <StickerShop getMyPacks={this.getMyPacks} /> : null}
       </section>
     );
