@@ -40,6 +40,38 @@ class Storage {
 
     return null;
   }
+
+  storeMyPacks(packs) {
+    try {
+      const key = `${this.userId}-sticker-packs`;
+      const data = packs.map(pack => (
+        {
+          pack_name: pack.pack_name,
+          main_icon: pack.main_icon
+        }
+      ));
+
+      const value = JSON.stringify(data);
+
+      localStorage.setItem(key, value);
+    } catch (err) {
+      console.warn('Error while saving to localStorage.', err);
+    }
+  }
+
+  getMyPacks() {
+    try {
+      const key = `${this.userId}-sticker-packs`;
+
+      const storedPacks = JSON.parse(localStorage.getItem(key));
+
+      return storedPacks;
+    } catch (err) {
+      console.warn('Error while retrieving item from localStorage.', err);
+    }
+
+    return null;
+  }
 }
 
 export default Storage;
