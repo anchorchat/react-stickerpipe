@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import StickerPipeClient from './client';
 import Storage from './storage';
-import MyStickerPacks from './my-sticker-packs';
-import StickerShop from './sticker-shop';
+import MyStickerPacks from './components/my-sticker-packs';
+import StickerShop from './components/sticker-shop';
 import parseResponse from './parse-response';
 
 class StickerMenu extends Component {
@@ -84,6 +84,7 @@ class StickerMenu extends Component {
       const stickerPacks = parseResponse(res);
 
       this.setState({
+        ...this.state,
         stickerPacks
       });
 
@@ -97,6 +98,7 @@ class StickerMenu extends Component {
 
   toggleShop() {
     this.setState({
+      ...this.state,
       shop: !this.state.shop
     });
   }

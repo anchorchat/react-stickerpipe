@@ -98,7 +98,21 @@ To start the webpack server run:
 $ cd examples && npm run start
 ```
 
-Webpack wil compile on changes in both `./src` and `./examples/src`.
+Webpack wil compile on changes in `./examples/src`.
+
+## Contributing
+
+If you want to help with the development of this module and need to test your changes with the examples you can import `<StickerMenu />` directly from `./dist`. Be sure to run `npm run compile` first.
+
+```javascript
+'./examples/src/app.js'
+
+// Change this
+import StickerMenu from 'react-stickerpipe';
+
+// to this
+import StickerMenu from '../../dist/index';
+```
 
 ## License
 

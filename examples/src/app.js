@@ -23,6 +23,7 @@ class App extends Component {
 
   sendSticker(sticker) {
     this.setState({
+      ...this.state,
       sticker
     });
   }

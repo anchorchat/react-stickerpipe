@@ -47,7 +47,7 @@ describe('parseResponse', function() {
       content: JSON.stringify(content)
     };
 
-    chai.assert(console.warn.called);
+    chai.assert(console.warn.called, 'Did not call console.warn');
     chai.assert.equal(null , parseResponse(response), 'Did not return null');
   });
 
@@ -60,7 +60,7 @@ describe('parseResponse', function() {
       content: JSON.stringify(content)
     };
 
-    chai.assert(console.warn.called);
+    chai.assert(console.warn.called, 'Did not call console.warn');
     chai.assert.equal(null , parseResponse(response), 'Did not return null');
   });
 
@@ -89,7 +89,7 @@ describe('parseResponse', function() {
       text: JSON.stringify(text)
     };
 
-    chai.assert(console.warn.called);
+    chai.assert(console.warn.called, 'Did not call console.warn');
     chai.assert.equal(null , parseResponse(response), 'Did not return null');
   });
 
@@ -102,7 +102,7 @@ describe('parseResponse', function() {
       text: JSON.stringify(text)
     };
 
-    chai.assert(console.warn.called);
+    chai.assert(console.warn.called, 'Did not call console.warn');
     chai.assert.equal(null , parseResponse(response), 'Did not return null');
   });
 
