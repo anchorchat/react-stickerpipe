@@ -16,9 +16,9 @@ function MyStickerPacks({ stickerPacks, shop, toggleShop, showPack }) {
           <div className="stickers" style={style.stickers}>
             {
               stickerPacks.length > 0
-              ? stickerPacks.map(stickerPack => (
+              ? stickerPacks.map((stickerPack, index) => (
                 <Sticker
-                  key={`my-sticker-packs-${stickerPack.pack_name}`}
+                  key={`my-sticker-packs-${stickerPack.pack_name}-${index}`}
                   src={stickerPack.main_icon.mdpi}
                   onClick={() => showPack(stickerPack.pack_name)}
                 />
