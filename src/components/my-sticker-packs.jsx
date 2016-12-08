@@ -18,7 +18,7 @@ function MyStickerPacks({ stickerPacks, shop, toggleShop, showPack }) {
               stickerPacks.length > 0
               ? stickerPacks.map(stickerPack => (
                 <Sticker
-                  key={stickerPack.pack_name}
+                  key={`my-sticker-packs-${stickerPack.pack_name}`}
                   src={stickerPack.main_icon.mdpi}
                   onClick={() => showPack(stickerPack.pack_name)}
                 />
