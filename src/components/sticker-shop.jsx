@@ -98,7 +98,7 @@ class StickerShop extends Component {
             stickerPacks.length > 0
             ? stickerPacks.map(stickerPack => (
               <Sticker
-                key={stickerPack.pack_name}
+                key={`sticker-shop-${stickerPack.pack_name}`}
                 onClick={() => this.previewPack(stickerPack.pack_name)}
                 src={stickerPack.main_icon.mdpi}
               />
