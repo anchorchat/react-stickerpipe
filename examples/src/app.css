@@ -13,6 +13,7 @@
 .demo > h1 {
   padding-bottom: .5rem;
   border-bottom: 1px solid #ededed;
+  margin: 20px 0;
 }
 
 .demo > h1 a {
@@ -36,7 +37,8 @@
   box-sizing: border-box;
 }
 
-.sticker-menu {
+.sticker-menu,
+.emoji-menu {
   height: 250px;
   overflow: hidden;
   position: relative;
@@ -146,6 +148,7 @@
 .sticker-pack-preview {
   width: 80%;
   max-width: 500px;
+  z-index: 2;
 }
 
 .sticker-pack-preview img {
@@ -157,12 +160,23 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  margin: 10px 0;
 }
 
 .emoji-menu .emoji {
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
   margin: 5px;
+}
+
+.emoji-menu section {
+  padding: 10px;
+  box-sizing: border-box;
+  padding-top: 44px;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  overflow-y: scroll;
 }
 
 .emoji-menu .emoji img {
@@ -170,13 +184,15 @@
   height: 100%;
 }
 
-header {
-  padding: 10px;
+.sticker-menu header,
+.emoji-menu header {
+  padding: 6px 10px;
   position: relative;
   z-index: 1;
   background: rgba(255, 255, 255, 0.75);
+  text-align: right;
 }
 
-header h1 {
-  margin: 0;
+svg {
+  cursor: pointer;
 }
