@@ -24,7 +24,8 @@ class StickerMenu extends Component {
       getShop: PropTypes.func.isRequired,
       getPackPreview: PropTypes.func.isRequired,
       purchasePack: PropTypes.func.isRequired
-    })
+    }),
+    toggleButton: React.PropTypes.element
   }
 
   static childContextTypes = {
@@ -159,14 +160,12 @@ class StickerMenu extends Component {
   }
 
   render() {
-    const { sendSticker } = this.props;
+    const { sendSticker, toggleButton } = this.props;
     const { stickerPacks, pack, shop } = this.state;
 
     return (
       <section className="sticker-menu">
-        <header>
-          <h1>Emoji Button Goes Here</h1>
-        </header>
+        {toggleButton ? <header>{toggleButton}</header> : null}
         {
           (pack && pack.stickers) && !shop
           ? <StickerPack pack={pack} sendSticker={sendSticker} />
