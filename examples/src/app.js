@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
+import emojione from 'emojione';
 import './app.css';
-import StickerMenu from 'react-stickerpipe';
+import StickerMenu from '../../dist/index';
 import settings from './settings.json';
-import StickerPipeClient from './client';
-
-const client = new StickerPipeClient(
-  settings.apiKey,
-  settings.userId,
-  'https://api.stickerpipe.com/api/v2'
-);
+import EmojiMenu from './emoji-menu';
 
 class App extends Component {
   constructor() {
@@ -19,17 +14,23 @@ class App extends Component {
     };
 
     this.sendSticker = this.sendSticker.bind(this);
+    this.sendEmoji = this.sendEmoji.bind(this);
   }
 
   sendSticker(sticker) {
     this.setState({
-      ...this.state,
       sticker
     });
   }
 
+  sendEmoji(emoji) {
+    this.setState({
+      emoji
+    });
+  }
+
   render() {
-    const { sticker } = this.state;
+    const { sticker, emoji } = this.state;
 
     const style = {
       sticker: {
@@ -49,10 +50,14 @@ class App extends Component {
           </a>
         </h1>
         {sticker ? <img style={style.sticker} src={sticker.image.hdpi} alt="sticker" /> : null}
+        {emoji ? <span dangerouslySetInnerHTML={{ __html: emojione.toImage(emoji) }} /> : null}
+        <EmojiMenu
+          sendEmoji={this.sendEmoji}
+        />
         <StickerMenu
           userId={settings.userId}
+          apiKey={settings.apiKey}
           sendSticker={this.sendSticker}
-          client={client}
         />
       </section>
     );
