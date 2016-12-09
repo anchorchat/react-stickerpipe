@@ -164,18 +164,21 @@ class StickerMenu extends Component {
 
     return (
       <section className="sticker-menu">
-        <MyStickerPacks
-          stickerPacks={stickerPacks}
-          showPack={this.showPack}
-          toggleShop={this.toggleShop}
-          shop={shop}
-        />
+        <header>
+          <h1>Emoji Button Goes Here</h1>
+        </header>
         {
           (pack && pack.stickers) && !shop
           ? <StickerPack pack={pack} sendSticker={sendSticker} />
           : null
         }
         {shop ? <StickerShop getMyPacks={this.getMyPacks} /> : null}
+        <MyStickerPacks
+          stickerPacks={stickerPacks}
+          showPack={this.showPack}
+          toggleShop={this.toggleShop}
+          shop={shop}
+        />
       </section>
     );
   }
