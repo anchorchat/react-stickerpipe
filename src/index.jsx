@@ -24,7 +24,8 @@ class StickerMenu extends Component {
       getShop: PropTypes.func.isRequired,
       getPackPreview: PropTypes.func.isRequired,
       purchasePack: PropTypes.func.isRequired
-    })
+    }),
+    toggleButton: React.PropTypes.element
   }
 
   static childContextTypes = {
@@ -159,23 +160,24 @@ class StickerMenu extends Component {
   }
 
   render() {
-    const { sendSticker } = this.props;
+    const { sendSticker, toggleButton } = this.props;
     const { stickerPacks, pack, shop } = this.state;
 
     return (
       <section className="sticker-menu">
-        <MyStickerPacks
-          stickerPacks={stickerPacks}
-          showPack={this.showPack}
-          toggleShop={this.toggleShop}
-          shop={shop}
-        />
+        {toggleButton ? <header>{toggleButton}</header> : null}
         {
           (pack && pack.stickers) && !shop
           ? <StickerPack pack={pack} sendSticker={sendSticker} />
           : null
         }
         {shop ? <StickerShop getMyPacks={this.getMyPacks} /> : null}
+        <MyStickerPacks
+          stickerPacks={stickerPacks}
+          showPack={this.showPack}
+          toggleShop={this.toggleShop}
+          shop={shop}
+        />
       </section>
     );
   }
