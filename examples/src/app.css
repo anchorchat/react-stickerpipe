@@ -7,12 +7,13 @@
 }
 
 .demo h1 {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .demo > h1 {
   padding-bottom: .5rem;
   border-bottom: 1px solid #ededed;
+  margin: 20px 0;
 }
 
 .demo > h1 a {
@@ -36,17 +37,27 @@
   box-sizing: border-box;
 }
 
-.sticker-menu {
+.sticker-menu,
+.emoji-menu {
+  height: 250px;
+  overflow: hidden;
+  position: relative;
   background-color: #F9F7F7;
   border-radius: 5px;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
+}
+
+.my-packs {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .pack-list {
   background-color: #FFFFFF;
   height: 26px;
   padding: 10px 0;
-  border-radius: 5px 5px 0 0;
+  border-radius: 0 0 5px 5px;
   position: relative;
   overflow-y: hidden;
 }
@@ -59,8 +70,6 @@
 .pack-list .stickers-tab {
   width: calc(100% - 48px);
   box-sizing: border-box;
-  padding-bottom: 40px;
-  margin-right: 48px;
   overflow-x: auto;
 }
 
@@ -82,6 +91,11 @@
 .sticker-pack,
 .sticker-shop {
   padding: 10px;
+  position: absolute;
+  bottom: 46px;
+  overflow-y: scroll;
+  height: calc(100% - 100px);
+  padding-top: 44px;
 }
 
 .sticker-pack h1,
@@ -93,7 +107,7 @@
   padding: 12px;
   padding-bottom: 48px;
   background-color: #F9F7F7;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -134,8 +148,51 @@
 .sticker-pack-preview {
   width: 80%;
   max-width: 500px;
+  z-index: 2;
 }
 
 .sticker-pack-preview img {
   width: 100%;
+}
+
+.emoji-menu article {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.emoji-menu .emoji {
+  width: 35px;
+  height: 35px;
+  margin: 5px;
+}
+
+.emoji-menu section {
+  padding: 10px;
+  box-sizing: border-box;
+  padding-top: 44px;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.emoji-menu .emoji img {
+  width: 100%;
+  height: 100%;
+}
+
+.sticker-menu header,
+.emoji-menu header {
+  padding: 6px 10px;
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.75);
+  text-align: right;
+}
+
+svg {
+  cursor: pointer;
 }

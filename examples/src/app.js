@@ -1,35 +1,53 @@
 import React, { Component } from 'react';
+import emojione from 'emojione';
 import './app.css';
-import StickerMenu from 'react-stickerpipe';
+import StickerMenu from '../../dist/index';
 import settings from './settings.json';
-import StickerPipeClient from './client';
-
-const client = new StickerPipeClient(
-  settings.apiKey,
-  settings.userId,
-  'https://api.stickerpipe.com/api/v2'
-);
+import EmojiMenu from './emoji-menu';
+import IconEmoji from './icon-emoji';
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      sticker: null
+      sticker: null,
+      emoji: null,
+      menu: 'stickers'
     };
 
     this.sendSticker = this.sendSticker.bind(this);
+    this.sendEmoji = this.sendEmoji.bind(this);
+    this.showStickers = this.showStickers.bind(this);
+    this.showEmoji = this.showEmoji.bind(this);
   }
 
   sendSticker(sticker) {
     this.setState({
-      ...this.state,
       sticker
     });
   }
 
+  sendEmoji(emoji) {
+    this.setState({
+      emoji
+    });
+  }
+
+  showStickers() {
+    this.setState({
+      menu: 'stickers'
+    });
+  }
+
+  showEmoji() {
+    this.setState({
+      menu: 'emoji'
+    });
+  }
+
   render() {
-    const { sticker } = this.state;
+    const { sticker, emoji, menu } = this.state;
 
     const style = {
       sticker: {
@@ -49,11 +67,22 @@ class App extends Component {
           </a>
         </h1>
         {sticker ? <img style={style.sticker} src={sticker.image.hdpi} alt="sticker" /> : null}
-        <StickerMenu
-          userId={settings.userId}
-          sendSticker={this.sendSticker}
-          client={client}
-        />
+        {emoji ? <span dangerouslySetInnerHTML={{ __html: emojione.toImage(emoji) }} /> : null}
+        {
+          menu === 'emoji'
+          ? <EmojiMenu sendEmoji={this.sendEmoji} showStickers={this.showStickers} />
+          : null
+        }
+        {
+          menu === 'stickers'
+          ? <StickerMenu
+            userId={settings.userId}
+            apiKey={settings.apiKey}
+            sendSticker={this.sendSticker}
+            toggleButton={<div onClick={this.showEmoji}><IconEmoji color="#00BCD4" /></div>}
+          />
+          : null
+        }
       </section>
     );
   }
