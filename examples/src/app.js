@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import emojione from 'emojione';
-import './app.css';
 import StickerMenu from 'react-stickerpipe';
+import './app.css';
 import settings from './settings.json';
 import EmojiMenu from './emoji-menu';
 import IconEmoji from './icon-emoji';
@@ -79,7 +79,7 @@ class App extends Component {
             userId={settings.userId}
             apiKey={settings.apiKey}
             sendSticker={this.sendSticker}
-            toggleButton={<div onClick={this.showEmoji}><IconEmoji color="#00BCD4" /></div>}
+            toggleButton={<div onClick={this.showEmoji}><IconEmoji color="#6389A8" /></div>}
           />
           : null
         }

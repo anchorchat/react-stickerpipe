@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Sticker from './sticker';
 import IconAdd from './icons/icon-add';
 
-function MyStickerPacks({ stickerPacks, shop, toggleShop, showPack }) {
+function MyStickerPacks({ stickerPacks, shop, toggleShop, showPack }, context) {
   const style = {
     stickers: {
       minWidth: `calc((${stickerPacks.length} * 48px)`
@@ -28,7 +28,7 @@ function MyStickerPacks({ stickerPacks, shop, toggleShop, showPack }) {
           </div>
         </div>
         <div onClick={toggleShop} className="button-shop">
-          <IconAdd color={shop ? '#00BCD4' : null} />
+          <IconAdd color={shop ? context.colors.primary : null} />
         </div>
       </section>
     </section>
@@ -48,6 +48,12 @@ MyStickerPacks.propTypes = {
   showPack: React.PropTypes.func.isRequired,
   toggleShop: React.PropTypes.func.isRequired,
   shop: React.PropTypes.bool.isRequired
+};
+
+MyStickerPacks.contextTypes = {
+  colors: PropTypes.shape({
+    primary: PropTypes.string.isRequired
+  })
 };
 
 export default MyStickerPacks;

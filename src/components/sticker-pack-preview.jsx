@@ -25,6 +25,10 @@ class StickerPackPreview extends Component {
     storage: PropTypes.shape({
       storePack: PropTypes.func.isRequired,
       getPack: PropTypes.func.isRequired
+    }).isRequired,
+    colors: PropTypes.shape({
+      primary: PropTypes.string.isRequired,
+      secondary: PropTypes.string.isRequired
     }).isRequired
   }
 
@@ -64,18 +68,19 @@ class StickerPackPreview extends Component {
 
   render() {
     const { preview, closePreview } = this.props;
+    const { colors } = this.context;
 
     return (
       <section className="sticker-pack-preview">
-        <div className="preview-header">
-          <h1>{preview.title}</h1>
-          <div onClick={closePreview} className="button-close"><IconClose color="rgba(255,255,255,.7)" /></div>
+        <div className="preview-header" style={{ backgroundColor: colors.primary }}>
+          <h1 style={{ color: colors.secondary }}>{preview.title}</h1>
+          <div onClick={closePreview} className="button-close"><IconClose color={colors.secondary} /></div>
         </div>
         <div className="preview-body">
           <img src={preview.preview_landscape.hdpi} alt={preview.title} />
         </div>
         <div className="preview-footer">
-          <div onClick={this.purchasePack} className="button-purchase"><IconPurchase color="rgba(99,137,168,.7)" /></div>
+          <div onClick={this.purchasePack} className="button-purchase"><IconPurchase color={colors.primary} /></div>
         </div>
       </section>
     );

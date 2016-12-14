@@ -25,6 +25,10 @@ class StickerMenu extends Component {
       getPackPreview: PropTypes.func.isRequired,
       purchasePack: PropTypes.func.isRequired
     }),
+    colors: PropTypes.shape({
+      primary: PropTypes.string,
+      secondary: PropTypes.string
+    }),
     toggleButton: React.PropTypes.element
   }
 
@@ -36,6 +40,10 @@ class StickerMenu extends Component {
     storage: PropTypes.shape({
       storePack: PropTypes.func.isRequired,
       getPack: PropTypes.func.isRequired
+    }).isRequired,
+    colors: PropTypes.shape({
+      primary: PropTypes.string.isRequired,
+      secondary: PropTypes.string.isRequired
     }).isRequired
   }
 
@@ -49,6 +57,14 @@ class StickerMenu extends Component {
     };
 
     let client;
+    let colors = {
+      primary: 'rgb(99,137,168)',
+      secondary: 'rgb(255,255,255)'
+    };
+
+    if (props && props.colors) {
+      colors = Object.assign({}, colors, props.colors);
+    }
 
     if (props && props.client) {
       client = props.client;
@@ -59,6 +75,7 @@ class StickerMenu extends Component {
     }
 
     this.client = client;
+    this.colors = colors;
     this.storage = new Storage(props.userId);
 
     this.getMyPacks = this.getMyPacks.bind(this);
@@ -69,7 +86,8 @@ class StickerMenu extends Component {
   getChildContext() {
     return {
       client: this.client,
-      storage: this.storage
+      storage: this.storage,
+      colors: this.colors
     };
   }
 
