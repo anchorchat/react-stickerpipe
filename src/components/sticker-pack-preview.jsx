@@ -67,10 +67,16 @@ class StickerPackPreview extends Component {
 
     return (
       <section className="sticker-pack-preview">
-        <h1>{preview.title}</h1>
-        <img src={preview.preview_landscape.hdpi} alt={preview.title} />
-        <div onClick={closePreview} className="button-close"><IconClose /></div>
-        <div onClick={this.purchasePack} className="button-purchase"><IconPurchase /></div>
+        <div className="preview-header">
+          <h1>{preview.title}</h1>
+          <div onClick={closePreview} className="button-close"><IconClose color="rgba(255,255,255,.7)" /></div>
+        </div>
+        <div className="preview-body">
+          <img src={preview.preview_landscape.hdpi} alt={preview.title} />
+        </div>
+        <div className="preview-footer">
+          <div onClick={this.purchasePack} className="button-purchase"><IconPurchase color="rgba(99,137,168,.7)" /></div>
+        </div>
       </section>
     );
   }
