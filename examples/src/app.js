@@ -80,6 +80,10 @@ class App extends Component {
             apiKey={settings.apiKey}
             sendSticker={this.sendSticker}
             toggleButton={<div onClick={this.showEmoji}><IconEmoji color="#6389A8" /></div>}
+            colors={{
+              primary: '#aaddaa',
+              secondary: '#5533dd'
+            }}
           />
           : null
         }
