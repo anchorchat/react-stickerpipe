@@ -64,10 +64,6 @@ class StickerShop extends Component {
   previewPack(packName) {
     const { client } = this.context;
 
-    this.setState({
-      loading: true
-    });
-
     client.getPackPreview(packName, (err, res) => {
       if (err) {
         console.log(err);
