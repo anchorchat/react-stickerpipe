@@ -63,7 +63,7 @@ class StickerMenu extends Component {
     };
 
     if (props && props.colors) {
-      colors = Object.assign({}, colors, props.colors);
+      colors = Object.assign(colors, props.colors);
     }
 
     if (props && props.client) {
