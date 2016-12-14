@@ -5,6 +5,7 @@ import MyStickerPacks from './components/my-sticker-packs';
 import StickerPack from './components/sticker-pack';
 import StickerShop from './components/sticker-shop';
 import parseResponse from './parse-response';
+import defaultColors from './default-colors';
 
 class StickerMenu extends Component {
   static propTypes = {
@@ -25,7 +26,11 @@ class StickerMenu extends Component {
       getPackPreview: PropTypes.func.isRequired,
       purchasePack: PropTypes.func.isRequired
     }),
-    toggleButton: React.PropTypes.element
+    toggleButton: React.PropTypes.element,
+    colors: PropTypes.shape({
+      primary: PropTypes.string.isRequired,
+      secondary: PropTypes.string.isRequired
+    })
   }
 
   static childContextTypes = {
@@ -160,8 +165,10 @@ class StickerMenu extends Component {
   }
 
   render() {
-    const { sendSticker, toggleButton } = this.props;
+    const { sendSticker, toggleButton, colors } = this.props;
     const { stickerPacks, pack, shop } = this.state;
+
+    const mergedColors = Object.assign(defaultColors, colors);
 
     return (
       <section className="sticker-menu">
@@ -171,12 +178,13 @@ class StickerMenu extends Component {
           ? <StickerPack pack={pack} sendSticker={sendSticker} />
           : null
         }
-        {shop ? <StickerShop getMyPacks={this.getMyPacks} /> : null}
+        {shop ? <StickerShop getMyPacks={this.getMyPacks} colors={mergedColors} /> : null}
         <MyStickerPacks
           stickerPacks={stickerPacks}
           showPack={this.showPack}
           toggleShop={this.toggleShop}
           shop={shop}
+          colors={mergedColors}
         />
       </section>
     );
