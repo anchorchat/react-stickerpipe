@@ -5,7 +5,11 @@ import parseResponse from '../parse-response';
 
 class StickerShop extends Component {
   static propTypes = {
-    getMyPacks: PropTypes.func.isRequired
+    getMyPacks: PropTypes.func.isRequired,
+    colors: PropTypes.shape({
+      primary: PropTypes.string.isRequired,
+      secondary: PropTypes.string.isRequired
+    })
   }
 
   static contextTypes = {
@@ -89,6 +93,7 @@ class StickerShop extends Component {
 
   render() {
     const { preview, stickerPacks } = this.state;
+    const { colors } = this.props;
 
     return (
       <section className="sticker-shop">
@@ -112,6 +117,7 @@ class StickerShop extends Component {
             preview={preview}
             onPurchase={this.onPurchase}
             closePreview={this.closePreview}
+            colors={colors}
           />
           : null
         }
