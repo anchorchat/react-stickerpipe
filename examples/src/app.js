@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import emojione from 'emojione';
 import './app.css';
-import StickerMenu from '../../dist/index'; // should be react-stickerpipe
+import StickerMenu from 'react-stickerpipe';
 import settings from './settings.json';
 import EmojiMenu from './emoji-menu';
 import IconEmoji from './icon-emoji';
