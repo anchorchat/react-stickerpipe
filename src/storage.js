@@ -3,6 +3,26 @@ class Storage {
     Object.assign(this, { userId });
   }
 
+  static storeItem(key, value) {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch (err) {
+      console.warn('Error while saving to localStorage.', err);
+    }
+  }
+
+  static getItem(key) {
+    let item = null;
+
+    try {
+      item = JSON.parse(localStorage.getItem(key));
+    } catch (err) {
+      console.warn('Error while retrieving item from localStorage.', err);
+    }
+
+    return item;
+  }
+
   storePack(packName, packTitle, packStickers) {
     const stickers = packStickers.map(packSticker => (
       {
@@ -11,34 +31,38 @@ class Storage {
       }
     ));
 
-    try {
-      const key = `${this.userId}-${packName}`;
-      const data = {
-        name: packName,
-        title: packTitle,
-        stickers
-      };
+    const key = `${this.userId}-${packName}`;
+    const value = {
+      name: packName,
+      title: packTitle,
+      stickers
+    };
 
-      const value = JSON.stringify(data);
-
-      localStorage.setItem(key, value);
-    } catch (err) {
-      console.warn('Error while saving to localStorage.', err);
-    }
+    this.constructor.storeItem(key, value);
   }
 
   getPack(packName) {
-    try {
-      const key = `${this.userId}-${packName}`;
+    const key = `${this.userId}-${packName}`;
 
-      const storedPack = JSON.parse(localStorage.getItem(key));
+    return this.constructor.getItem(key);
+  }
 
-      return storedPack;
-    } catch (err) {
-      console.warn('Error while retrieving item from localStorage.', err);
-    }
+  storeMyPacks(packs) {
+    const key = `${this.userId}-sticker-packs`;
+    const value = packs.map(pack => (
+      {
+        pack_name: pack.pack_name,
+        main_icon: pack.main_icon
+      }
+    ));
 
-    return null;
+    this.constructor.storeItem(key, value);
+  }
+
+  getMyPacks() {
+    const key = `${this.userId}-sticker-packs`;
+
+    return this.constructor.getItem(key);
   }
 }
 
