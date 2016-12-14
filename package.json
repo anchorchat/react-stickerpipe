@@ -1,6 +1,6 @@
 {
   "name": "react-stickerpipe",
-  "version": "1.5.3",
+  "version": "1.7.0",
   "description": "React Component for StickerPipe API",
   "main": "dist/index.js",
   "files": [
@@ -73,7 +73,9 @@
     ]
   },
   "dependencies": {
-    "react": "^15.4.1",
     "superagent": "^3.0.0"
+  },
+  "peerDependencies": {
+    "react": "^15.4.1"
   }
 }
