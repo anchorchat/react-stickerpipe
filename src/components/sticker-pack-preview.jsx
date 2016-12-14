@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import parseResponse from '../parse-response';
 import IconPurchase from './icons/icon-purchase';
 import IconClose from './icons/icon-close';
+import defaultColors from '../default-colors';
 
 class StickerPackPreview extends Component {
   static propTypes = {
@@ -12,6 +13,10 @@ class StickerPackPreview extends Component {
         mdpi: PropTypes.string.isRequired,
         hdpi: PropTypes.string.isRequired
       })
+    }),
+    colors: PropTypes.shape({
+      primary: PropTypes.string.isRequired,
+      secondary: PropTypes.string.isRequired
     }),
     onPurchase: PropTypes.func.isRequired,
     closePreview: PropTypes.func.isRequired
@@ -25,10 +30,6 @@ class StickerPackPreview extends Component {
     storage: PropTypes.shape({
       storePack: PropTypes.func.isRequired,
       getPack: PropTypes.func.isRequired
-    }).isRequired,
-    colors: PropTypes.shape({
-      primary: PropTypes.string.isRequired,
-      secondary: PropTypes.string.isRequired
     }).isRequired
   }
 
@@ -67,20 +68,21 @@ class StickerPackPreview extends Component {
   }
 
   render() {
-    const { preview, closePreview } = this.props;
-    const { colors } = this.context;
+    const { preview, closePreview, colors } = this.props;
+
+    const color = Object.assign(defaultColors, colors);
 
     return (
       <section className="sticker-pack-preview">
-        <div className="preview-header" style={{ backgroundColor: colors.primary }}>
-          <h1 style={{ color: colors.secondary }}>{preview.title}</h1>
-          <div onClick={closePreview} className="button-close"><IconClose color={colors.secondary} /></div>
+        <div className="preview-header" style={{ backgroundColor: color.primary }}>
+          <h1 style={{ color: color.secondary }}>{preview.title}</h1>
+          <div onClick={closePreview} className="button-close"><IconClose color={color.secondary} /></div>
         </div>
         <div className="preview-body">
           <img src={preview.preview_landscape.hdpi} alt={preview.title} />
         </div>
         <div className="preview-footer">
-          <div onClick={this.purchasePack} className="button-purchase"><IconPurchase color={colors.primary} /></div>
+          <div onClick={this.purchasePack} className="button-purchase"><IconPurchase color={color.primary} /></div>
         </div>
       </section>
     );
