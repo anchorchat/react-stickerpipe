@@ -54,7 +54,12 @@ class StickerPackPreview extends Component {
       storage.storePack(pack.pack_name, pack.title, pack.stickers);
 
       const storedPacks = storage.getMyPacks();
-      if (storedPacks.length > 0) {
+
+      const hasPurchasedPack = Boolean(
+        storedPacks.find(storedPack => storedPack.pack_name === pack.pack_name)
+      );
+
+      if (storedPacks.length > 0 && !hasPurchasedPack) {
         storedPacks.unshift(pack);
 
         storage.storeMyPacks(storedPacks);
