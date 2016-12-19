@@ -44,8 +44,10 @@ class StickerShop extends Component {
 
       const stickerPacks = parseResponse(res);
 
+      const filteredPacks = stickerPacks.filter(stickerPack => stickerPack.user_status === 'none');
+
       this.setState({
-        stickerPacks
+        stickerPacks: filteredPacks
       });
 
       return false;
