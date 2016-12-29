@@ -5,7 +5,7 @@ import IconAdd from './icons/icon-add';
 function MyStickerPacks({ stickerPacks, shop, toggleShop, showPack, colors }) {
   const style = {
     stickers: {
-      minWidth: `calc((${stickerPacks.length} * 48px)`
+      minWidth: `${stickerPacks.length * 48}px`
     }
   };
 
