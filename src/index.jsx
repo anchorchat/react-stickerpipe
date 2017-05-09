@@ -1,3 +1,4 @@
+/* eslint no-console: ["error", { allow: ["error"] }] */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import StickerPipeClient from './client';
@@ -76,7 +77,7 @@ class StickerMenu extends Component {
 
     this.client.getMyPacks((err, res) => {
       if (err) {
-        console.log(err);
+        console.error(err);
 
         return false;
       }
@@ -115,7 +116,7 @@ class StickerMenu extends Component {
 
     client.purchasePack(packName, (err, res) => {
       if (err) {
-        console.log(err);
+        console.error(err);
 
         return false;
       }

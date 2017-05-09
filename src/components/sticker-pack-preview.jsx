@@ -1,3 +1,4 @@
+/* eslint no-console: ["error", { allow: ["error"] }] */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import parseResponse from '../parse-response';
@@ -45,7 +46,7 @@ class StickerPackPreview extends Component {
 
     client.purchasePack(preview.pack_name, (err, res) => {
       if (err) {
-        console.log(err);
+        console.error(err);
 
         return false;
       }

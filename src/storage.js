@@ -1,3 +1,4 @@
+/* eslint no-console: ["error", { allow: ["error"] }] */
 class Storage {
   constructor(userId) {
     Object.assign(this, { userId });
@@ -7,7 +8,7 @@ class Storage {
     try {
       localStorage.setItem(key, JSON.stringify(value));
     } catch (err) {
-      console.warn('Error while saving to localStorage.', err);
+      console.error('Error while saving to localStorage.', err);
     }
   }
 
@@ -17,7 +18,7 @@ class Storage {
     try {
       item = JSON.parse(localStorage.getItem(key));
     } catch (err) {
-      console.warn('Error while retrieving item from localStorage.', err);
+      console.error('Error while retrieving item from localStorage.', err);
     }
 
     return item;
