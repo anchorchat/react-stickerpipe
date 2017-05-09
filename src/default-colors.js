@@ -1,6 +1,6 @@
 const defaultColors = {
-  primary: 'rgb(99,137,168)',
-  secondary: 'rgb(255,255,255)'
+  primary: '#1BA6C4',
+  secondary: '#FEFEFE'
 };
 
 export default defaultColors;
