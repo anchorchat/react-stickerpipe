@@ -29,22 +29,6 @@ function MyComponent() {
 }
 ```
 
-You can also pass your own API client as `client` to `<StickerMenu />`. The client must contain the following methods:
-
-```javascript
-// Get the purchased packs for the current user
-getMyPacks() {}
-
-// Get the sticker shop
-getShop() {}
-
-// Preview a sticker pack
-getPackPreview() {}
-
-// Purchase a sticker pack
-purchasePack() {}
-```
-
 ## Installation
 
 ### src

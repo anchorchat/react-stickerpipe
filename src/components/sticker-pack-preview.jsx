@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+/* eslint no-console: ["error", { allow: ["error"] }] */
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import parseResponse from '../parse-response';
 import IconPurchase from './icons/icon-purchase';
 import IconClose from './icons/icon-close';
@@ -12,11 +14,11 @@ class StickerPackPreview extends Component {
         mdpi: PropTypes.string.isRequired,
         hdpi: PropTypes.string.isRequired
       })
-    }),
+    }).isRequired,
     colors: PropTypes.shape({
       primary: PropTypes.string.isRequired,
       secondary: PropTypes.string.isRequired
-    }),
+    }).isRequired,
     onPurchase: PropTypes.func.isRequired,
     closePreview: PropTypes.func.isRequired
   }
@@ -44,7 +46,7 @@ class StickerPackPreview extends Component {
 
     client.purchasePack(preview.pack_name, (err, res) => {
       if (err) {
-        console.log(err);
+        console.error(err);
 
         return false;
       }
@@ -74,10 +76,19 @@ class StickerPackPreview extends Component {
   render() {
     const { preview, closePreview, colors } = this.props;
 
+    const style = {
+      header: {
+        backgroundColor: colors.primary
+      },
+      heading: {
+        color: colors.secondary
+      }
+    };
+
     return (
       <section className="sticker-pack-preview">
-        <div className="preview-header" style={{ backgroundColor: colors.primary }}>
-          <h1 style={{ color: colors.secondary }}>{preview.title}</h1>
+        <div className="preview-header" style={style.header}>
+          <h1 style={style.heading}>{preview.title}</h1>
           <div onClick={closePreview} className="button-close"><IconClose color={colors.secondary} /></div>
         </div>
         <div className="preview-body">

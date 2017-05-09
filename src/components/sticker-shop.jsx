@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+/* eslint no-console: ["error", { allow: ["error"] }] */
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Sticker from './sticker';
 import StickerPackPreview from './sticker-pack-preview';
 import parseResponse from '../parse-response';
@@ -9,7 +11,7 @@ class StickerShop extends Component {
     colors: PropTypes.shape({
       primary: PropTypes.string.isRequired,
       secondary: PropTypes.string.isRequired
-    })
+    }).isRequired
   }
 
   static contextTypes = {
@@ -37,7 +39,7 @@ class StickerShop extends Component {
 
     client.getShop((err, res) => {
       if (err) {
-        console.log(err);
+        console.error(err);
 
         return false;
       }
@@ -68,7 +70,7 @@ class StickerShop extends Component {
 
     client.getPackPreview(packName, (err, res) => {
       if (err) {
-        console.log(err);
+        console.error(err);
 
         return false;
       }

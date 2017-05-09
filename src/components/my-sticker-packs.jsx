@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Sticker from './sticker';
 import IconAdd from './icons/icon-add';
 
@@ -16,9 +17,9 @@ function MyStickerPacks({ stickerPacks, shop, toggleShop, showPack, colors }) {
           <div className="stickers" style={style.stickers}>
             {
               stickerPacks.length > 0
-              ? stickerPacks.map((stickerPack, index) => (
+              ? stickerPacks.map(stickerPack => (
                 <Sticker
-                  key={`my-sticker-packs-${stickerPack.pack_name}-${index}`}
+                  key={`my-sticker-packs-${stickerPack.pack_name}`}
                   src={stickerPack.main_icon.mdpi}
                   onClick={() => showPack(stickerPack.pack_name)}
                 />
@@ -50,7 +51,7 @@ MyStickerPacks.propTypes = {
   shop: React.PropTypes.bool.isRequired,
   colors: PropTypes.shape({
     primary: PropTypes.string.isRequired
-  })
+  }).isRequired
 };
 
 export default MyStickerPacks;
