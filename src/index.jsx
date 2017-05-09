@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import StickerPipeClient from './client';
 import Storage from './storage';
 import MyStickerPacks from './components/my-sticker-packs';
@@ -14,8 +15,8 @@ class StickerMenu extends Component {
     sendSticker: PropTypes.func.isRequired,
     toggleButton: React.PropTypes.element,
     colors: PropTypes.shape({
-      primary: PropTypes.string.isRequired,
-      secondary: PropTypes.string.isRequired
+      primary: PropTypes.string,
+      secondary: PropTypes.string
     })
   }
 

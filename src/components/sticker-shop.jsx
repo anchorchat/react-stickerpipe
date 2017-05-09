@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Sticker from './sticker';
 import StickerPackPreview from './sticker-pack-preview';
 import parseResponse from '../parse-response';
@@ -9,7 +10,7 @@ class StickerShop extends Component {
     colors: PropTypes.shape({
       primary: PropTypes.string.isRequired,
       secondary: PropTypes.string.isRequired
-    })
+    }).isRequired
   }
 
   static contextTypes = {

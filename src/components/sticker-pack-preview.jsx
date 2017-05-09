@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import parseResponse from '../parse-response';
 import IconPurchase from './icons/icon-purchase';
 import IconClose from './icons/icon-close';

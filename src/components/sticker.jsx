@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Sticker({ src, onClick }) {
   return (
@@ -12,8 +13,8 @@ function Sticker({ src, onClick }) {
 }
 
 Sticker.propTypes = {
-  src: React.PropTypes.string.isRequired,
-  onClick: React.PropTypes.func
+  src: PropTypes.string.isRequired,
+  onClick: PropTypes.func
 };
 
 export default Sticker;
