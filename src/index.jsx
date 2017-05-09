@@ -20,12 +20,6 @@ class StickerMenu extends Component {
     },
     userId: PropTypes.string.isRequired,
     sendSticker: PropTypes.func.isRequired,
-    client: PropTypes.shape({
-      getMyPacks: PropTypes.func.isRequired,
-      getShop: PropTypes.func.isRequired,
-      getPackPreview: PropTypes.func.isRequired,
-      purchasePack: PropTypes.func.isRequired
-    }),
     toggleButton: React.PropTypes.element,
     colors: PropTypes.shape({
       primary: PropTypes.string.isRequired,
@@ -53,17 +47,7 @@ class StickerMenu extends Component {
       shop: false
     };
 
-    let client;
-
-    if (props && props.client) {
-      client = props.client;
-    }
-
-    if (props && !props.client && props.apiKey) {
-      client = new StickerPipeClient(props.apiKey, props.userId, 'https://api.stickerpipe.com/api/v2');
-    }
-
-    this.client = client;
+    this.client = new StickerPipeClient(props.apiKey, props.userId, 'https://api.stickerpipe.com/api/v2');
     this.storage = new Storage(props.userId);
 
     this.getMyPacks = this.getMyPacks.bind(this);
