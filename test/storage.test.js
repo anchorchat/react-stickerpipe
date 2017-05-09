@@ -13,7 +13,7 @@ describe('Storage', function() {
         return { key, value };
       }
     };
-    sinon.stub(console, 'warn');
+    sinon.stub(console, 'error');
     sinon.spy(localStorage, 'getItem');
     sinon.spy(localStorage, 'setItem');
     sinon.spy(JSON, 'parse');
@@ -21,7 +21,7 @@ describe('Storage', function() {
   });
 
   after(function () {
-    console.warn.restore();
+    console.error.restore();
     localStorage.getItem.restore();
     localStorage.setItem.restore();
     JSON.parse.restore();
@@ -65,7 +65,7 @@ describe('Storage', function() {
 
       chai.assert(localStorage.getItem.withArgs('mocha-test-pack').called, 'Did not call localStorage.getItem');
       chai.assert(JSON.parse.withArgs('mocha-test-pack').called, 'Did not call JSON.parse');
-      chai.assert(console.warn.called, 'Did not call console.warn');
+      chai.assert(console.error.called, 'Did not call console.error');
       chai.assert.equal(null, pack, 'Did not return null');
     });
 
