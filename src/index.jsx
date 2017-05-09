@@ -9,15 +9,7 @@ import defaultColors from './default-colors';
 
 class StickerMenu extends Component {
   static propTypes = {
-    apiKey: (props, propName) => {
-      if (!props.client && !props[propName]) {
-        return new Error(
-          `Prop ${propName} is required when prop client is not specified!`
-        );
-      }
-
-      return null;
-    },
+    apiKey: PropTypes.string.isRequired,
     userId: PropTypes.string.isRequired,
     sendSticker: PropTypes.func.isRequired,
     toggleButton: React.PropTypes.element,
