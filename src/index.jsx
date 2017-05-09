@@ -21,6 +21,11 @@ class StickerMenu extends Component {
     })
   }
 
+  static defaultProps = {
+    colors: defaultColors,
+    toggleButton: null
+  }
+
   static childContextTypes = {
     client: PropTypes.shape({
       getMyPacks: PropTypes.func.isRequired,

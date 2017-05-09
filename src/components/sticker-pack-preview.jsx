@@ -14,7 +14,7 @@ class StickerPackPreview extends Component {
         mdpi: PropTypes.string.isRequired,
         hdpi: PropTypes.string.isRequired
       })
-    }),
+    }).isRequired,
     colors: PropTypes.shape({
       primary: PropTypes.string.isRequired,
       secondary: PropTypes.string.isRequired

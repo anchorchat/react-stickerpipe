@@ -7,14 +7,14 @@ function Sticker({ src, onClick }) {
       className="sticker"
       onClick={onClick}
       src={src}
-      role="presentation"
+      alt="sticker"
     />
   );
 }
 
 Sticker.propTypes = {
   src: PropTypes.string.isRequired,
-  onClick: PropTypes.func
+  onClick: PropTypes.func.isRequired
 };
 
 export default Sticker;
