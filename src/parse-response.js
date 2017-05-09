@@ -1,3 +1,4 @@
+/* eslint no-console: ["error", { allow: ["error"] }] */
 function parseResponse(response) {
   let text;
 
@@ -10,7 +11,7 @@ function parseResponse(response) {
   }
 
   if (!text) {
-    console.warn('Did not supply any matching response format. Response is:', text);
+    console.error('Did not supply any matching response format. Response is:', text);
     return null;
   }
 
@@ -25,7 +26,7 @@ function parseResponse(response) {
       return parsedResponse.data;
     }
   } catch (err) {
-    console.warn('Error while parsing JSON', err);
+    console.error('Error while parsing JSON', err);
   }
 
   return null;
