@@ -46,9 +46,9 @@ MyStickerPacks.propTypes = {
       xxhdpi: PropTypes.string.isRequired
     }).isRequired
   })).isRequired,
-  showPack: React.PropTypes.func.isRequired,
-  toggleShop: React.PropTypes.func.isRequired,
-  shop: React.PropTypes.bool.isRequired,
+  showPack: PropTypes.func.isRequired,
+  toggleShop: PropTypes.func.isRequired,
+  shop: PropTypes.bool.isRequired,
   colors: PropTypes.shape({
     primary: PropTypes.string.isRequired
   }).isRequired

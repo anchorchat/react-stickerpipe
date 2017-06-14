@@ -14,7 +14,7 @@ class StickerMenu extends Component {
     apiKey: PropTypes.string.isRequired,
     userId: PropTypes.string.isRequired,
     sendSticker: PropTypes.func.isRequired,
-    toggleButton: React.PropTypes.element,
+    toggleButton: PropTypes.element,
     colors: PropTypes.shape({
       primary: PropTypes.string,
       secondary: PropTypes.string

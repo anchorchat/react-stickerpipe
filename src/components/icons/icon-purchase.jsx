@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function IconPurchase({ color }) {
   return (
@@ -11,7 +12,7 @@ function IconPurchase({ color }) {
 }
 
 IconPurchase.propTypes = {
-  color: React.PropTypes.string
+  color: PropTypes.string
 };
 
 IconPurchase.defaultProps = {
