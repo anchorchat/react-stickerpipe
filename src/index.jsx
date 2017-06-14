@@ -1,6 +1,7 @@
 /* eslint no-console: ["error", { allow: ["error"] }] */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import onClickOutside from 'react-onclickoutside';
 import StickerPipeClient from './client';
 import Storage from './storage';
 import MyStickerPacks from './components/my-sticker-packs';
@@ -18,12 +19,17 @@ class StickerMenu extends Component {
     colors: PropTypes.shape({
       primary: PropTypes.string,
       secondary: PropTypes.string
-    })
+    }),
+    /** Toggle the StickerMenu's visibility */
+    open: PropTypes.bool,
+    /** Function to hide the menu */
+    hideMenu: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
     colors: defaultColors,
-    toggleButton: null
+    toggleButton: null,
+    open: false
   }
 
   static childContextTypes = {
@@ -147,14 +153,39 @@ class StickerMenu extends Component {
     });
   }
 
+  handleClickOutside = () => {
+    const { hideMenu } = this.props;
+
+    hideMenu();
+  }
+
   render() {
-    const { sendSticker, toggleButton, colors } = this.props;
+    const {
+      sendSticker,
+      toggleButton,
+      colors,
+      open,
+      eventTypes, // eslint-disable-line no-unused-vars, react/prop-types
+      outsideClickIgnoreClass, // eslint-disable-line no-unused-vars, react/prop-types
+      preventDefault, // eslint-disable-line no-unused-vars, react/prop-types
+      stopPropagation, // eslint-disable-line no-unused-vars, react/prop-types
+      disableOnClickOutside, // eslint-disable-line no-unused-vars, react/prop-types
+      enableOnClickOutside, // eslint-disable-line no-unused-vars, react/prop-types
+      hideMenu, // eslint-disable-line no-unused-vars
+      apiKey, // eslint-disable-line no-unused-vars
+      userId, // eslint-disable-line no-unused-vars
+      ...custom
+    } = this.props;
     const { stickerPacks, pack, shop } = this.state;
+
+    if (!open) {
+      return false;
+    }
 
     const mergedColors = Object.assign(defaultColors, colors);
 
     return (
-      <section className="sticker-menu">
+      <section className="sticker-menu" {...custom}>
         {toggleButton ? <header>{toggleButton}</header> : null}
         {
           (pack && pack.stickers) && !shop
@@ -174,4 +205,4 @@ class StickerMenu extends Component {
   }
 }
 
-export default StickerMenu;
+export default onClickOutside(StickerMenu);

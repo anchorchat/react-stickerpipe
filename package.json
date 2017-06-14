@@ -73,6 +73,7 @@
     ]
   },
   "dependencies": {
+    "react-onclickoutside": "^6.1.1",
     "superagent": "^3.0.0"
   },
   "peerDependencies": {

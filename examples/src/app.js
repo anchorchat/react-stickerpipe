@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import emojione from 'emojione';
-import StickerMenu from 'react-stickerpipe';
+import StickerMenu from '../../dist';
 import './app.css';
 import settings from './settings.json';
 import EmojiMenu from './emoji-menu';
@@ -73,20 +73,18 @@ class App extends Component {
           ? <EmojiMenu sendEmoji={this.sendEmoji} showStickers={this.showStickers} />
           : null
         }
-        {
-          menu === 'stickers'
-          ? <StickerMenu
-            userId={settings.userId}
-            apiKey={settings.apiKey}
-            sendSticker={this.sendSticker}
-            toggleButton={<div onClick={this.showEmoji}><IconEmoji color="#6389A8" /></div>}
-            colors={{
-              primary: '#aaddaa',
-              secondary: '#5533dd'
-            }}
-          />
-          : null
-        }
+        <StickerMenu
+          userId={settings.userId}
+          apiKey={settings.apiKey}
+          sendSticker={this.sendSticker}
+          toggleButton={<div onClick={this.showEmoji}><IconEmoji color="#6389A8" /></div>}
+          colors={{
+            primary: '#aaddaa',
+            secondary: '#5533dd'
+          }}
+          open={menu === 'stickers'}
+          hideMenu={this.showEmoji}
+        />
       </section>
     );
   }
