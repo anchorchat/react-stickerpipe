@@ -1,6 +1,6 @@
 {
   "name": "react-stickerpipe",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "React Component for StickerPipe API",
   "main": "dist/index.js",
   "files": [
@@ -73,6 +73,7 @@
     ]
   },
   "dependencies": {
+    "react-event-listener": "^0.4.5",
     "react-onclickoutside": "^6.1.1",
     "superagent": "^3.0.0"
   },
