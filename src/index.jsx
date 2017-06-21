@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import onClickOutside from 'react-onclickoutside';
+import EventListener from 'react-event-listener';
 import StickerPipeClient from './client';
 import Storage from './storage';
 import MyStickerPacks from './components/my-sticker-packs';
@@ -153,10 +154,18 @@ class StickerMenu extends Component {
     });
   }
 
-  handleClickOutside = () => {
+  handleClickOutside = (event) => {
     const { hideMenu } = this.props;
 
-    hideMenu();
+    hideMenu(event);
+  }
+
+  handleKeyUp = (event) => {
+    const { hideMenu } = this.props;
+
+    if (event.which === 27) {
+      hideMenu(event);
+    }
   }
 
   render() {
@@ -200,6 +209,7 @@ class StickerMenu extends Component {
           shop={shop}
           colors={mergedColors}
         />
+        <EventListener target="window" onKeyUp={this.handleKeyUp} />
       </section>
     );
   }
